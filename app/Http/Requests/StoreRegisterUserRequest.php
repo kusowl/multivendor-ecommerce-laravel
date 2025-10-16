@@ -26,14 +26,14 @@ class StoreRegisterUserRequest extends FormRequest
             'name' => 'required|max:100',
             'email' => 'required|email|max:256|unique:users',
             'password' => 'required|max:256|min:4|confirmed',
-            'role' => ['required', Rule::in(['vendor', 'partner', 'customer'])]
+            'role' => ['required', Rule::in(['vendor', 'partner', 'customer'])],
         ];
     }
 
-    public function messages() : array
+    public function messages(): array
     {
-       return [
-           'role.required' => 'You need to select one of the above options.'
-       ];
+        return [
+            'role.required' => 'You need to select one of the above options.',
+        ];
     }
 }

@@ -23,7 +23,7 @@ class AuthenticateSessionRequest extends FormRequest
     {
         return [
             'email' => 'required|max:256|email',
-            'password' => 'required'
+            'password' => 'required',
         ];
     }
 }

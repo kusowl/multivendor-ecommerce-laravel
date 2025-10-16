@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthenticateSessionRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
@@ -15,9 +14,10 @@ class AuthenticatedSessionController extends Controller
 
     public function store(AuthenticateSessionRequest $request)
     {
-        if(Auth::attempt($request->only(['email', 'password']))){
+        if (Auth::attempt($request->only(['email', 'password']))) {
             // Redirect to dashboard
         }
+
         return back()->withInput($request->except('password'))->withErrors(['email' => 'No matching user found']);
     }
 }

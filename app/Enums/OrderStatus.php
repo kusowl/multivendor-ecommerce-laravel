@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Enums\Traits\ToArray;
 
-enum OrderStatus : string
+enum OrderStatus: string
 {
     use ToArray;
 
@@ -12,7 +12,7 @@ enum OrderStatus : string
     case processing = 'Processing';
     case shipped = 'Shipped';
     case delivered = 'Delivered';
-    case cancelled  = 'Cancelled';
-    case refunded  = 'Refunded';
+    case cancelled = 'Cancelled';
+    case refunded = 'Refunded';
 
 }

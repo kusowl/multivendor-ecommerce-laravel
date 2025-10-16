@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRegisterUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class RegisterdUserController extends Controller
 {
@@ -16,6 +15,6 @@ class RegisterdUserController extends Controller
 
     public function store(StoreRegisterUserRequest $request)
     {
-       User::create($request->all()) ;
+        User::create($request->all());
     }
 }
