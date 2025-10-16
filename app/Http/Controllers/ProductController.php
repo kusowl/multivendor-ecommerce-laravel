@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -20,15 +22,19 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all(['id', 'name']);
+
+        return view('dashboard.product.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $data = $request->all();
+        $data = array_merge($data, ['vendor_id' => 1]);
+        Product::create($data);
     }
 
     /**

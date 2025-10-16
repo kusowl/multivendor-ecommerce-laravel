@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterdUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +18,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [RegisterdUserController::class, 'store']);
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index' ])->name('dashboard.index');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 Route::group(['prefix' => 'dashboard'], function () {
-   Route::get('category', [\App\Http\Controllers\CategoryController::class, 'create'])->name('dashboard.category');
+    Route::get('category', [CategoryController::class, 'create'])->name('dashboard.category');
+    Route::post('category', [CategoryController::class, 'store']);
+
+    Route::get('product', [ProductController::class, 'create'])->name('dashboard.product');
+    Route::post('product', [ProductController::class, 'store']);
 });
