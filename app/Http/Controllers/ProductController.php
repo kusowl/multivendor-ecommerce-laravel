@@ -23,8 +23,9 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all(['id', 'name']);
+        $products = Product::all(['id', 'name', 'slug', 'price', 'stock']);
 
-        return view('dashboard.product.create', compact('categories'));
+        return view('dashboard.product.create', compact('categories', 'products'));
     }
 
     /**
@@ -35,6 +36,8 @@ class ProductController extends Controller
         $data = $request->all();
         $data = array_merge($data, ['vendor_id' => 1]);
         Product::create($data);
+
+        return to_route('dashboard.product');
     }
 
     /**
