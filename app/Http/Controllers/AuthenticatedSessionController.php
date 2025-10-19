@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRoles;
 use App\Http\Requests\AuthenticateSessionRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,11 @@ class AuthenticatedSessionController extends Controller
     public function store(AuthenticateSessionRequest $request)
     {
         if (Auth::attempt($request->only(['email', 'password']))) {
-            // Redirect to dashboard
+            if (Auth::user()->role == UserRoles::Customer->value) {
+                return to_route('home');
+            } else {
+                return to_route('dashboard');
+            }
         }
 
         return back()->withInput($request->except('password'))->withErrors(['email' => 'No matching user found']);

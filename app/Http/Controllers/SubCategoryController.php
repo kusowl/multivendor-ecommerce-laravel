@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\StoreSubCategoryRequest;
 use App\Models\Category;
-use App\Utils\File;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,19 +23,19 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.category.create');
+        $categories = Category::all();
+
+        return view('dashboard.sub-category.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreSubCategoryRequest $request)
     {
-        $data = $request->only(['name', 'slug']);
-        if ($request->hasFile('image')) {
-            $data['image'] = File::upload($request->file('image'), 'uploads/product-images');
-        }
-        Category::create($data);
+        $data = $request->only(['name', 'category_id']);
+        $data['slug'] = Str::slug($data['name']);
+        SubCategory::create($data);
 
         return back();
     }
@@ -42,7 +43,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(SubCategory $subCategory)
     {
         //
     }
@@ -50,7 +51,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(SubCategory $subCategory)
     {
         //
     }
@@ -58,7 +59,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, SubCategory $subCategory)
     {
         //
     }
@@ -66,7 +67,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(SubCategory $subCategory)
     {
         //
     }

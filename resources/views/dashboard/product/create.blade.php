@@ -1,4 +1,4 @@
-<x-layouts.dashboard>
+<x-layouts.dashboard-form>
     <x-bladewind::card class="mb-4 ">
         <form action="{{route('dashboard.product')}}" method="post">
             @csrf
@@ -25,4 +25,4 @@
     </x-bladewind::card>
     <x-bladewind::table :data="$products" exclude_columns="id, slug" searchable="true" sortable="true" paginated="true"
                         page-size="2" pagination_style="dropdown"/>
-</x-layouts.dashboard>
+</x-layouts.dashboard-form>
