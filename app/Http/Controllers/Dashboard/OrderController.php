@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Payment;
+use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
-class PaymentController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class PaymentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Payment $payment)
+    public function show(Order $order)
     {
         //
     }
@@ -42,7 +43,7 @@ class PaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Payment $payment)
+    public function edit(Order $order)
     {
         //
     }
@@ -50,7 +51,7 @@ class PaymentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Payment $payment)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -58,7 +59,7 @@ class PaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Payment $payment)
+    public function destroy(Order $order)
     {
         //
     }

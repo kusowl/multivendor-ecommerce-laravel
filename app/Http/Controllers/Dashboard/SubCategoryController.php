@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSubCategoryRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
@@ -15,7 +16,24 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data = SubCategory::select('id', 'name', 'category_id')
+            ->with(
+                'category:id,name'
+            )
+            ->paginate(12)
+            ->through(
+                function (SubCategory $item) {
+                    return [
+                        'id' => $item->id,
+                        'name' => $item->name,
+                        'category_id' => $item->category?->id,
+                        'parent_category_name' => $item->category?->name,
+                    ];
+                }
+            );
+
+        //        dd($data);
+        return view('dashboard.sub-category.index', compact('data'));
     }
 
     /**

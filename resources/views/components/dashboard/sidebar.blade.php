@@ -7,7 +7,9 @@
             <x-dashboard.sidebar-item route="dashboard" icon="home">Home</x-dashboard.sidebar-item>
             <x-dashboard.sidebar-item route="dashboard.category" icon="inbox-stack">Categories
             </x-dashboard.sidebar-item>
-            <x-dashboard.sidebar-item route="dashboard.sub-category" icon="inbox-stack">Sub Categories
+            <x-dashboard.sidebar-item route="dashboard.sub-category.create" icon="inbox-stack">Sub Categories
+            </x-dashboard.sidebar-item>
+            <x-dashboard.sidebar-item route="dashboard.sub-category.index" icon="inbox-stack">View all Sub Categories
             </x-dashboard.sidebar-item>
             <x-dashboard.sidebar-item route="dashboard.product" icon="cube">Products
             </x-dashboard.sidebar-item>

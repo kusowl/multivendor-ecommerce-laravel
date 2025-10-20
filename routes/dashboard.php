@@ -1,0 +1,20 @@
+<?php
+
+use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\SubCategoryController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('category', [CategoryController::class, 'create'])->name('dashboard.category');
+    Route::post('category', [CategoryController::class, 'store']);
+
+    Route::get('sub-category', [SubCategoryController::class, 'index'])->name('dashboard.sub-category.index');
+    Route::get('sub-category/create', [SubCategoryController::class, 'create'])->name('dashboard.sub-category.create');
+    Route::post('sub-category/create', [SubCategoryController::class, 'store']);
+
+    Route::get('product', [ProductController::class, 'create'])->name('dashboard.product');
+    Route::post('product', [ProductController::class, 'store']);
+});
