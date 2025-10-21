@@ -54,7 +54,7 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
-        run: ./vendor/bin/pest --quiet
+        run: php artisan test
       - name: Execute Static analysis using Larastan
         run: phpstan --memory-limit-3G
       - name: Linting using PINT
