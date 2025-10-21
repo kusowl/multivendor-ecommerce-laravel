@@ -38,6 +38,10 @@ jobs:
             libmanette-0.2-0 \
             libgles2 \
             libx264-164
+      - name: Install Node.js dependencies
+        run: npm install
+      - name: Build frontend assets
+        run: npm run build
       - name: Install Dependencies
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
