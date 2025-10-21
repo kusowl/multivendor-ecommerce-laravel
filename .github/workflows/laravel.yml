@@ -54,6 +54,8 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
+      - name: setup bladwwind for browser test
+        run: php artisan vendor:publish --tag=bladewind-public --force
       - name: Execute tests (Unit and Feature tests) via Pest
         env:
           DB_CONNECTION: sqlite
