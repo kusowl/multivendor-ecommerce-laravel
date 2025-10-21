@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use Illuminate\Support\Facades;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Facades\View::composer('components.store.navbar', function (View $view) {
+            $categories = Category::latest()->take(3)->get();
+            $view->with('categories', $categories);
+        });
     }
 }
