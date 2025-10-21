@@ -22,12 +22,13 @@ class SubCategoryController extends Controller
             )
             ->paginate(12)
             ->through(
-                function (SubCategory $item) {
+                function ($item) {
+                    /** @var SubCategory $item */
                     return [
-                        'id' => $item->id,
-                        'name' => $item->name,
-                        'category_id' => $item->category?->id,
-                        'parent_category_name' => $item->category?->name,
+                        'id' => $item->getAttribute('id'),
+                        'name' => $item->getAttribute('name'),
+                        'category_id' => $item->getAttribute('category')?->getAttribute('id'),
+                        'parent_category_name' => $item->getAttribute('category')?->getAttribute('name'),
                     ];
                 }
             );
