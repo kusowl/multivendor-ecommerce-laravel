@@ -62,6 +62,6 @@ jobs:
           DB_DATABASE: database/database.sqlite
         run: php artisan test
       - name: Execute Static analysis using Larastan
-        run: phpstan --memory-limit-3G
-      - name: Linting using PINT
-        run: pint
+        run: ./vendor/bin/phpstan --memory-limit-3G
+      - name: Linting using Laravel Pint
+        run: ./vendor/bin/pint
