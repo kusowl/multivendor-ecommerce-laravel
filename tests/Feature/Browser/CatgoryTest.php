@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Category;
+
 it('creates a category', function () {
     $page = visit(route('dashboard.category'));
     $page->assertSee('Category Name');
@@ -9,7 +11,7 @@ it('creates a category', function () {
 });
 
 it('creates a sub category', function () {
-    $parentCategory = \App\Models\Category::factory()->createOne();
+    $parentCategory = Category::factory()->createOne();
     $page = visit(route('dashboard.sub-category.create'));
     $page->assertSee('Sub-Category Name');
     $page->fill('name', 'Test Sub-Category')
@@ -19,4 +21,11 @@ it('creates a sub category', function () {
         ->click('Submit')
         ->assertUrlIs(route('dashboard.sub-category.create'));
 
+});
+
+test('Store has Category page', function () {
+    $category = Category::factory()->createOne();
+    $page = visit(route('store.categories'));
+    $page->assertSee('Categories')
+        ->assertSee($category->name);
 });
