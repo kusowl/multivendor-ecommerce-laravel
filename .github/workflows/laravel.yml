@@ -2,7 +2,7 @@ name: Laravel
 
 on:
   push:
-    branches: [ * ]
+    branches: [ "master", "workflow-setup" ]
   pull_request:
     branches: [ "master" ]
 
