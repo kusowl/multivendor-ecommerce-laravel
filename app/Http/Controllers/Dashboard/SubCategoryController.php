@@ -33,7 +33,6 @@ class SubCategoryController extends Controller
                 }
             );
 
-        //        dd($data);
         return view('dashboard.sub-category.index', compact('data'));
     }
 

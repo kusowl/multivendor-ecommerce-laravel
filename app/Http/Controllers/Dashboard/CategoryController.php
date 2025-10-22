@@ -15,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data = Category::select('id', 'name', 'image')->paginate(12)->toArray();
+
+        return view('dashboard.category.index', compact('data'));
     }
 
     /**
