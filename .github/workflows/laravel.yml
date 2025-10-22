@@ -2,7 +2,7 @@ name: Laravel
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ * ]
   pull_request:
     branches: [ "master" ]
 
@@ -20,8 +20,8 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install system dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
+          sudo apt-get update -q
+          sudo apt-get install -y -q \
             libgtk-4-1 \
             libgraphene-1.0-0 \
             libwoff1 \
@@ -54,16 +54,22 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
+
+      - name: setup bladewind
+        run: php artisan vendor:publish --tag=bladewind-public --force
+
+      - name: Linting using Laravel Pint
+        run: ./vendor/bin/pint
+
+      - name: Execute Static analysis using Larastan
+        run: ./vendor/bin/phpstan --memory-limit=2G
+
       - name: Building frontend assets for browser test
         run: npm run build
-      - name: setup bladewind for browser test
-        run: php artisan vendor:publish --tag=bladewind-public --force
+
       - name: Execute tests (Unit and Feature tests) via Pest
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: php artisan test
-      - name: Execute Static analysis using Larastan
-        run: ./vendor/bin/phpstan --memory-limit=2G
-      - name: Linting using Laravel Pint
-        run: ./vendor/bin/pint
+
