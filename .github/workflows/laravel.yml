@@ -2,6 +2,8 @@ name: Laravel
 
 on:
   push:
+    branches: [ "master", "workflow-setup" ]
+  pull_request:
     branches: [ "master" ]
 
 jobs:
@@ -18,8 +20,8 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install system dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
+          sudo apt-get update -q
+          sudo apt-get install -y -q \
             libgtk-4-1 \
             libgraphene-1.0-0 \
             libwoff1 \
@@ -39,13 +41,11 @@ jobs:
             libgles2 \
             libx264-164
       - name: Install Node.js dependencies
-        run: npm install
-      - name: Build frontend assets
-        run: npm run build
-      - name: Install Dependencies
         run: |
-          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-          npm install playwright && npx playwright install
+          npm install --quite
+          npm install --quiet playwright && npx playwright install
+      - name: Install Composer Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Generate key
         run: php artisan key:generate
       - name: Directory Permissions
@@ -54,14 +54,22 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
-      - name: setup bladwwind for browser test
+
+      - name: setup bladewind
         run: php artisan vendor:publish --tag=bladewind-public --force
+
+      - name: Linting using Laravel Pint
+        run: ./vendor/bin/pint
+
+      - name: Execute Static analysis using Larastan
+        run: ./vendor/bin/phpstan --memory-limit=2G
+
+      - name: Building frontend assets for browser test
+        run: npm run build
+
       - name: Execute tests (Unit and Feature tests) via Pest
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: php artisan test
-      - name: Execute Static analysis using Larastan
-        run: ./vendor/bin/phpstan --memory-limit=2G
-      - name: Linting using Laravel Pint
-        run: ./vendor/bin/pint
+
