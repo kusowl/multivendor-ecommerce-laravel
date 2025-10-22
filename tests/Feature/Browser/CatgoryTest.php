@@ -3,11 +3,17 @@
 use App\Models\Category;
 
 it('creates a category', function () {
-    $page = visit(route('dashboard.category'));
+    $page = visit(route('dashboard.category.create'));
     $page->assertSee('Category Name');
     $page->fill('name', 'Test Category')
         ->click('Submit')
-        ->assertUrlIs(route('dashboard.category'));
+        ->assertUrlIs(route('dashboard.category.create'));
+});
+
+test('Dashboard shows category details', function () {
+    $category = Category::factory()->createOne();
+    $page = visit(route('dashboard.category'));
+    $page->assertSee($category->name);
 });
 
 it('creates a sub category', function () {
