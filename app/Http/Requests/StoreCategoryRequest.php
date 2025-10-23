@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class StoreCategoryRequest extends FormRequest
 {
@@ -22,11 +23,25 @@ class StoreCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => 'required|min:3|max:50|unique:categories',
+        $rules = [
+            'name' => ['required', 'min:3', 'max:50'],
             'slug' => 'required',
             'image' => ['nullable', 'image', 'max:'.(config('file.max_image_size') * 1024)],
         ];
+
+        /*
+         * Apply unique rule within whole existing table, only when new Category is created.
+         * Else check uniqueness within whole existing table except the current record.
+         * This makes unique rule pass for when record is updated with same name as before.
+         * */
+
+        if ($this->method() === 'PATCH') {
+            $rules['name'][] = Rule::unique('categories')->ignore($this->route('category'));
+        } else {
+            $rules['name'] = Rule::unique('categories');
+        }
+
+        return $rules;
     }
 
     protected function prepareForValidation(): void

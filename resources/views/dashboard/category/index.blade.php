@@ -1,9 +1,16 @@
+@php
+    $action_icons = [
+        "icon:pencil | tip:edit | click:editItem('{slug}')",
+        "icon:trash | color:red | tip:delete | click:redirect('')",
+    ];
+@endphp
 <x-layouts.dashboard>
     <div class="w-full">
 
         <x-bladewind::table
             :data="$data['data']"
-            exclude_columns="id, slug, category_id"
+            :action_icons="$action_icons"
+            exclude_columns="slug"
             searchable="true"
             sortable="true"
             striped="true"
@@ -63,6 +70,12 @@
         </div>
 
     </div>
-    </div>
 
 </x-layouts.dashboard>
+
+<script>
+    const url = @json(route('dashboard.category.edit', ['category' => ':slug']));
+    const editItem = (slug) => {
+        window.location.href = url.replace(':slug', slug);
+    }
+</script>

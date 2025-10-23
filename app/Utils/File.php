@@ -20,4 +20,9 @@ class File
 
         return false;
     }
+
+    public static function getImage(string $url): string
+    {
+        return asset('storage/'.$url);
+    }
 }

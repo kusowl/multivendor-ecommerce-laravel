@@ -35,3 +35,15 @@ test('Store has Category page', function () {
     $page->assertSee('Categories')
         ->assertSee($category->name);
 });
+
+// This is test is disabled for pest bug
+// it('Edits a category', function () {
+//    $category = Category::factory()->createOne();
+//    $page = visit(route('dashboard.category'));
+//    $page->assertSee($category->name);
+//    $page->click('//button[contains(@onclick, "editItem")]');
+//    $page->assertUrlIs(route('dashboard.category.edit', $category->slug));
+//    $page->fill('name', 'Test')
+//        ->press('Update')
+//        ->assertSee('Test');
+// });

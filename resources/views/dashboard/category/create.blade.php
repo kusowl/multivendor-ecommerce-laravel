@@ -1,6 +1,6 @@
 <x-layouts.dashboard-form>
 
-    <form action="{{route('dashboard.category')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('dashboard.category.create')}}" method="post" enctype="multipart/form-data">
         @csrf
         <x-bladewind::input
             name="name"

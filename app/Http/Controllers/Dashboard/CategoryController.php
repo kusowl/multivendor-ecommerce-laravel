@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use App\Utils\File;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::select('id', 'name', 'image')->paginate(12)->toArray();
+        $data = Category::select('slug', 'name', 'image')->paginate(12)->toArray();
 
         return view('dashboard.category.index', compact('data'));
     }
@@ -55,15 +54,32 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('dashboard.category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(StoreCategoryRequest $request, Category $category)
     {
-        //
+        $data = $request->only(['name', 'slug']);
+
+        // If user is deleting existing image
+        if ($category->image != null && ! $request->hasFile('image')) {
+            File::deleteFile($category->image);
+            $data['image'] = null;
+        }
+
+        if ($request->hasFile('image')) {
+            // If user is updating the image then delete the existing image file, else user is uploading image for first time
+            if ($category->image != null) {
+                File::deleteFile($category->image);
+            }
+            $data['image'] = File::upload($request->file('image'), 'uploads/product-images');
+        }
+        $category->update($data);
+
+        return to_route('dashboard.category');
     }
 
     /**
