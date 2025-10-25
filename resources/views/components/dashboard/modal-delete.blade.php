@@ -1,4 +1,4 @@
-@props(['title' => '', 'route' => '', 'route-key' => 'id'])
+@props(['title' => '', 'route' => ''])
 <x-bladewind::modal
     name="delete-item"
     type="warning"
@@ -7,7 +7,7 @@
     blur_size="none"
 >
     Are you sure ?
-    <form action="{{route($route, ":".$routeKey)}}" method="post">
+    <form action="{{$route}}" method="post">
         @csrf
         @method('DELETE')
         <div class="buttons space-x-2 mt-4">
