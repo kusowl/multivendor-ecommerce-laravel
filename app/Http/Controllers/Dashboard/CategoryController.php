@@ -66,14 +66,14 @@ class CategoryController extends Controller
 
         // If user is deleting existing image
         if ($category->image != null && ! $request->hasFile('image')) {
-            File::deleteFile($category->image);
+            File::delete($category->image);
             $data['image'] = null;
         }
 
         if ($request->hasFile('image')) {
             // If user is updating the image then delete the existing image file, else user is uploading image for first time
             if ($category->image != null) {
-                File::deleteFile($category->image);
+                File::delete($category->image);
             }
             $data['image'] = File::upload($request->file('image'), 'uploads/product-images');
         }
@@ -87,6 +87,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if ($category->image) {
+            File::delete($category->image);
+        }
+        $category->delete();
+
+        return back();
     }
 }

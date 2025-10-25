@@ -12,7 +12,7 @@ class File
         return $file->store($directory, $disk);
     }
 
-    public static function deleteFile(string $path, string $disk = 'public'): bool
+    public static function delete(string $path, string $disk = 'public'): bool
     {
         if (Storage::disk($disk)->exists($path)) {
             return Storage::disk($disk)->delete($path);

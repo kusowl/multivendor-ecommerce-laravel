@@ -1,7 +1,7 @@
 @php
     $action_icons = [
         "icon:pencil | tip:edit | click:editItem('{slug}')",
-        "icon:trash | color:red | tip:delete | click:redirect('')",
+        "icon:trash | color:red | tip:delete | click:showModal('delete-item', {slug: '{slug}'})",
     ];
 @endphp
 <x-layouts.dashboard>
@@ -70,12 +70,12 @@
         </div>
 
     </div>
-
+    <x-dashboard.modal-delete title="Delete Category" route="dashboard.category.delete" route-key="slug"/>
 </x-layouts.dashboard>
 
 <script>
-    const url = @json(route('dashboard.category.edit', ['category' => ':slug']));
+    const editUrl = @json(route('dashboard.category.edit', ['category' => ':slug']));
     const editItem = (slug) => {
-        window.location.href = url.replace(':slug', slug);
+        window.location.href = editUrl.replace(':slug', slug);
     }
 </script>

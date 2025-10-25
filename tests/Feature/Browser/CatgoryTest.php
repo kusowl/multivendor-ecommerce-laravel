@@ -47,3 +47,13 @@ test('Store has Category page', function () {
 //        ->press('Update')
 //        ->assertSee('Test');
 // });
+
+it('Deletes a category', function () {
+    $category = Category::factory()->createOne();
+    $page = visit(route('dashboard.category'));
+    $page->press('//button[contains(@onclick, "showModal")]')
+        ->assertSee('Delete Category')
+        ->press('Yes')
+        ->screenshot()
+        ->assertDontSee($category->name);
+});
