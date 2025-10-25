@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -23,10 +24,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all(['id', 'name']);
-        $products = Product::all(['id', 'name', 'slug', 'price', 'stock']);
+        $categories = Category::all(['id', 'name'])->toArray();
+        $subCategories = SubCategory::all(['id', 'name', 'category_id'])->toArray();
 
-        return view('dashboard.product.create', compact('categories', 'products'));
+        return view('dashboard.product.create', compact('categories', 'subCategories'));
     }
 
     /**

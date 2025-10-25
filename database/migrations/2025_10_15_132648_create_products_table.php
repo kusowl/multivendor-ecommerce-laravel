@@ -24,6 +24,11 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+            $table->foreignIdFor(\App\Models\SubCategory::class)
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->foreignIdFor(\App\Models\Vendor::class)
                 ->constrained()
                 ->onDelete('cascade')

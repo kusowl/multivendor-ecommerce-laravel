@@ -14,7 +14,7 @@
             </x-dashboard.sidebar-item>
             <x-dashboard.sidebar-item route="dashboard.sub-category" icon="inbox-stack">View all Sub Categories
             </x-dashboard.sidebar-item>
-            <x-dashboard.sidebar-item route="dashboard.product" icon="cube">Products
+            <x-dashboard.sidebar-item route="dashboard.product.create" icon="cube">Add Product
             </x-dashboard.sidebar-item>
         </ul>
     </div>
