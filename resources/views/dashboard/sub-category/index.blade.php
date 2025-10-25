@@ -1,18 +1,11 @@
 <x-layouts.dashboard>
-    <div class="w-full">
-
-        <x-bladewind::table
-            :data="$data->all()"
-            exclude_columns="id, slug, category_id"
-            searchable="true"
-            sortable="true"
-            striped="true"
-            compact="true"
-        />
-
-        <div class="pagination mt-4">
-            {{ $data->links() }}
-        </div>
-    </div>
+    <x-dashboard.table
+        :data="$data"
+        :edit_route="route('dashboard.sub-category.edit', ['subCategory' => ':slug'])"
+        :delete_route="route('dashboard.sub-category.delete', ['subCategory' => ':slug'])"
+        exclude_columns="id, slug, category_id"
+        modal_title="Delete Sub-Category"
+        route_key=":slug"
+    />
 
 </x-layouts.dashboard>

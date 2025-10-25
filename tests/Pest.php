@@ -45,3 +45,5 @@ function something()
 {
     // ..
 }
+
+pest()->browser()->timeout(10000);

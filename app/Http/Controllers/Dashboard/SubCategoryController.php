@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSubCategoryRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class SubCategoryController extends Controller
 {
@@ -16,7 +14,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $data = SubCategory::select('id', 'name', 'category_id')
+        $data = SubCategory::select('id', 'name', 'slug', 'category_id')
             ->with(
                 'category:id,name'
             )
@@ -27,11 +25,12 @@ class SubCategoryController extends Controller
                     return [
                         'id' => $item->getAttribute('id'),
                         'name' => $item->getAttribute('name'),
+                        'slug' => $item->getAttribute('slug'),
                         'category_id' => $item->getAttribute('category')?->getAttribute('id'),
                         'parent_category_name' => $item->getAttribute('category')?->getAttribute('name'),
                     ];
                 }
-            );
+            )->toArray();
 
         return view('dashboard.sub-category.index', compact('data'));
     }
@@ -51,9 +50,7 @@ class SubCategoryController extends Controller
      */
     public function store(StoreSubCategoryRequest $request)
     {
-        $data = $request->only(['name', 'category_id']);
-        $data['slug'] = Str::slug($data['name']);
-        SubCategory::create($data);
+        SubCategory::create($request->only(['name', 'category_id', 'slug']));
 
         return back();
     }
@@ -71,15 +68,19 @@ class SubCategoryController extends Controller
      */
     public function edit(SubCategory $subCategory)
     {
-        //
+        $categories = Category::all();
+
+        return view('dashboard.sub-category.edit', compact('subCategory', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SubCategory $subCategory)
+    public function update(StoreSubCategoryRequest $request, SubCategory $subCategory)
     {
-        //
+        $subCategory->update($request->only(['slug', 'name', 'category_id']));
+
+        return to_route('dashboard.sub-category');
     }
 
     /**
@@ -87,6 +88,8 @@ class SubCategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
-        //
+        $subCategory->delete();
+
+        return back();
     }
 }
