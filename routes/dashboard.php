@@ -15,6 +15,8 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::patch('category/{category:slug}/update', [CategoryController::class, 'update'])->name('dashboard.category.update');
     Route::delete('category/{category:slug}/delete', [CategoryController::class, 'destroy'])->name('dashboard.category.delete');
 
+    Route::get('category/{category:id}/subcategory', [CategoryController::class, 'subCategories'])->name('dashboard.category.subcategory');
+
     Route::get('sub-category', [SubCategoryController::class, 'index'])->name('dashboard.sub-category');
     Route::get('sub-category/create', [SubCategoryController::class, 'create'])->name('dashboard.sub-category.create');
     Route::post('sub-category/create', [SubCategoryController::class, 'store']);

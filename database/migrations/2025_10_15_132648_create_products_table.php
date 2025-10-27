@@ -25,11 +25,12 @@ return new class extends Migration
                 ->onUpdate('cascade');
 
             $table->foreignIdFor(\App\Models\SubCategory::class)
+                ->nullable()
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreignIdFor(\App\Models\Vendor::class)
+            $table->foreignIdFor(\App\Models\User::class, 'vendor_id')
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

@@ -24,8 +24,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all(['id', 'name'])->toArray();
-        $subCategories = SubCategory::all(['id', 'name', 'category_id'])->toArray();
+        $categories = Category::select(['id', 'name'])->get();
+        $subCategories = SubCategory::select(['id', 'name', 'category_id'])->get();
 
         return view('dashboard.product.create', compact('categories', 'subCategories'));
     }
@@ -39,7 +39,7 @@ class ProductController extends Controller
         $data = array_merge($data, ['vendor_id' => 1]);
         Product::create($data);
 
-        return to_route('dashboard.product');
+        return to_route('dashboard.product.create');
     }
 
     /**
