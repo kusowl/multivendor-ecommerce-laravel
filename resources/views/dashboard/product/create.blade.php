@@ -24,6 +24,8 @@
 
             <x-error field="sub_category_id"/>
 
+            <x-dashboard.tinymce-editor name="description"/>
+
             <x-bladewind::button can-submit="true">Submit</x-bladewind::button>
         </form>
     </x-bladewind::card>
