@@ -2,12 +2,11 @@
 
 namespace App\Utils;
 
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class File
 {
-    public static function upload(UploadedFile $file, string $directory = 'uploads', string $disk = 'public'): false|string
+    public static function upload($file, string $directory = 'uploads', string $disk = 'public'): false|string
     {
         return $file->store($directory, $disk);
     }

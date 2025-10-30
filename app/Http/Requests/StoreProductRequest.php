@@ -28,6 +28,8 @@ class StoreProductRequest extends FormRequest
             'slug' => 'required|min:3|max:256|unique:products',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
+            'images' => ['required', 'array'],
+            'images.*' => ['required', 'image', 'max:'.(config('file.max_image_size') * 1024)],
             'category_id' => 'required|exists:\App\Models\Category,id',
             'description' => 'required',
         ];

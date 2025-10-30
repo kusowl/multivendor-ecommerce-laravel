@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
+use App\Utils\File;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -36,6 +37,13 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $data = $request->all();
+        if ($request->hasFile('images')) {
+            $files = [];
+            foreach ($request->file('images') as $image) {
+                $files[] = File::upload($image, 'uploads/product-images');
+            }
+            $data['image'] = implode(',', $files);
+        }
         $data = array_merge($data, ['vendor_id' => 1]);
         Product::create($data);
 

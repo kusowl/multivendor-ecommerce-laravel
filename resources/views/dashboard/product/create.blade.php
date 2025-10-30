@@ -1,6 +1,9 @@
 <x-layouts.dashboard-form>
+    @php
+        var_dump($errors);
+    @endphp
     <x-bladewind::card class="mb-4 ">
-        <form action="{{route('dashboard.product.create')}}" method="post">
+        <form action="{{route('dashboard.product.create')}}" method="post" enctype="multipart/form-data">
             @csrf
             <x-input-text name="name" required="true" label="Product name"/>
 
@@ -9,10 +12,20 @@
                 <x-input-text name="stock" label="Stock" required="true"/>
             </div>
 
+            <x-bladewind::filepicker
+                name="images[]"
+                show_image_preview="true"
+                accepted-file-types="image/*"
+                max_file_size="{{config('file.max_image_size')}}mb"
+                max_files="5"
+            />
+            <x-error field="images"/>
+
             <x-bladewind::select
                 name="category_id" label="Choose category"
                 required="true" :data="$categories"
                 label_key="name" value_key="id"
+                :selected_value="old('category_id')"
                 onselect="fetchSubCategoriesByCategory"
             />
             <x-error field="category_id"/>
