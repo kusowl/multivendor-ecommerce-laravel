@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-class StoreCategoryRequest extends FormRequest
+class SaveCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

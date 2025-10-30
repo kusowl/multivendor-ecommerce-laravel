@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreSubCategoryRequest;
+use App\Http\Requests\SaveSubCategoryRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
 
@@ -48,7 +48,7 @@ class SubCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSubCategoryRequest $request)
+    public function store(SaveSubCategoryRequest $request)
     {
         SubCategory::create($request->only(['name', 'category_id', 'slug']));
 
@@ -76,7 +76,7 @@ class SubCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreSubCategoryRequest $request, SubCategory $subCategory)
+    public function update(SaveSubCategoryRequest $request, SubCategory $subCategory)
     {
         $subCategory->update($request->only(['slug', 'name', 'category_id']));
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\SaveCategoryRequest;
 use App\Models\Category;
 use App\Utils\File;
 
@@ -30,7 +30,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(SaveCategoryRequest $request)
     {
         $data = $request->only(['name', 'slug']);
         if ($request->hasFile('image')) {
@@ -60,7 +60,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCategoryRequest $request, Category $category)
+    public function update(SaveCategoryRequest $request, Category $category)
     {
         $data = $request->only(['name', 'slug']);
 

@@ -34,7 +34,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(SaveProductRequest $request)
     {
         $data = $request->all();
         if ($request->hasFile('images')) {
