@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\UserRoles;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -13,7 +15,8 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+
+        return Auth::user()->role === UserRoles::Vendor->value;
     }
 
     /**
@@ -26,7 +29,7 @@ class StoreCategoryRequest extends FormRequest
         $rules = [
             'name' => ['required', 'min:3', 'max:50'],
             'slug' => 'required',
-            'image' => ['nullable', 'image', 'max:'.(config('file.max_image_size') * 1024)],
+            'image' => ['required', 'image', 'max:'.(config('file.max_image_size') * 1024)],
         ];
 
         /*

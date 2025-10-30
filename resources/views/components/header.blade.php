@@ -16,24 +16,24 @@
     <meta name="generator" content="Themefisher Constra HTML Template v1.0">
 
     <!-- theme meta -->
-    <meta name="theme-name" content="aviato" />
+    <meta name="theme-name" content="aviato"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
 
     <!-- Themefisher Icon font -->
-    <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+    <link rel="stylesheet" href="{{asset('plugins/themefisher-font/style.css')}}">
     <!-- bootstrap.min css -->
-    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}">
 
     <!-- Animate css -->
-    <link rel="stylesheet" href="plugins/animate/animate.css">
+    <link rel="stylesheet" href="{{asset('plugins/animate/animate.css')}}">
     <!-- Slick Carousel -->
-    <link rel="stylesheet" href="plugins/slick/slick.css">
-    <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+    <link rel="stylesheet" href="{{asset('plugins/slick/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/slick/slick-theme.css')}}">
 
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
 </head>
 
