@@ -22,7 +22,7 @@
                                          aria-labelledby="headingOne">
                                         <div class="panel-body">
                                             <ul>
-                                                @foreach($item->subCategory as $subItem)
+                                                @foreach($item->subCategories as $subItem)
                                                     <li><a href="#!">{{$subItem->name}}</a></li>
                                                 @endforeach
                                             </ul>

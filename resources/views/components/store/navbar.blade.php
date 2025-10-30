@@ -76,8 +76,8 @@
                                         <ul>
                                             <li class="dropdown-header">{{$category->name}}</li>
                                             <li role="separator" class="divider"></li>
-                                            @foreach($category->subCategory()->latest()->take(4)->get() as $subCategory)
-                                                <li><a href="contact.html">{{$subCategory->name}}</a></li>
+                                            @foreach($category->subCategories()->latest()->take(4)->get() as $subCategories)
+                                                <li><a href="contact.html">{{$subCategories->name}}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>

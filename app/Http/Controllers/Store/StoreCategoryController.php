@@ -10,7 +10,7 @@ class StoreCategoryController extends Controller
 {
     public function index(): View
     {
-        $categories = Category::with('subCategory')->get()->chunk(3);
+        $categories = Category::with('subCategories')->get()->chunk(3);
 
         return view('store.categories', compact('categories'));
     }

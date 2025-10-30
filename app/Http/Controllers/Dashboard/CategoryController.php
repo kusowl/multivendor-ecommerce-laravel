@@ -97,7 +97,7 @@ class CategoryController extends Controller
 
     public function subCategories(Category $category)
     {
-        $subCategories = $category->subCategory()->select(['id', 'name', 'slug'])->get();
+        $subCategories = $category->subCategories()->select(['id', 'name', 'slug'])->get();
 
         return response()->json($subCategories);
     }
