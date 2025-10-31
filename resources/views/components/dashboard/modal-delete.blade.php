@@ -2,7 +2,7 @@
 <x-bladewind::modal
     name="delete-item"
     type="warning"
-    title="Delete Category"
+    :title="$title"
     show_action_buttons="false"
     blur_size="none"
 >

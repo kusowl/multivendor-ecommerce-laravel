@@ -8,11 +8,15 @@
                         <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
                             <div class='carousel-outer'>
                                 <!-- me art lab slider -->
-                                <div class='carousel-inner '>
+                                <div class='carousel-inner'>
                                     @foreach(explode(',', $product->image) as $index => $image)
-                                        <div class='item {{$index == 0 ? 'active': ''}}'>
-                                            <img src='{{\App\Utils\File::getImage($image)}}' alt=''
-                                                 data-zoom-image="{{\App\Utils\File::getImage($image)}}"
+                                        <div class='item {{ $index == 0 ? "active" : "" }}'
+                                             style="height: 48rem; overflow: hidden;">
+                                            <img
+                                                src='{{ \App\Utils\File::getImage($image) }}'
+                                                alt=''
+                                                style="width: 100%; height: 100%; object-fit: cover; object-position: center;"
+                                                data-zoom-image="{{ \App\Utils\File::getImage($image) }}"
                                             />
                                         </div>
                                     @endforeach
@@ -83,7 +87,14 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <a href="cart.html" class="btn btn-main mt-20">Add To Cart</a>
+                        <ul class="list-inline dashboard-menu">
+                            <li>
+                                <a href="cart.html" class="btn mt-20">Add To Cart</a>
+                            </li>
+                            <li>
+                                <a href="cart.html" class="btn btn-main mt-20">Buy Now</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

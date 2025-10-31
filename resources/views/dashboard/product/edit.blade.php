@@ -1,13 +1,24 @@
+@php
+    $selected_images = [];
+    if($product->image){
+        foreach(explode(',', $product->image) as $image){
+            $selected_images[] = [
+                'source' => \App\Utils\File::getImage($image)
+            ];
+        }
+    }
+@endphp
 <x-layouts.dashboard-form>
-
     <x-bladewind::card class="mb-4 ">
-        <form action="{{route('dashboard.product.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('dashboard.product.update', ['product' => $product->slug])}}" method="post"
+              enctype="multipart/form-data">
+            @method('PATCH')
             @csrf
-            <x-input-text name="name" required="true" label="Product name"/>
+            <x-input-text name="name" required="true" label="Product name" value="{{$product->name}}"/>
 
             <div class="flex gap-3">
-                <x-input-text name="price" label="Price" required="true"/>
-                <x-input-text name="stock" label="Stock" required="true"/>
+                <x-input-text name="price" label="Price" required="true" value="{{$product->price}}"/>
+                <x-input-text name="stock" label="Stock" required="true" value="{{$product->stock}}"/>
             </div>
 
             <x-bladewind::filepicker
@@ -16,6 +27,7 @@
                 accepted-file-types="image/*"
                 max_file_size="{{config('file.max_image_size')}}mb"
                 max_files="5"
+                :selected-value="$selected_images"
             />
             <x-error field="images"/>
 
@@ -23,19 +35,31 @@
                 name="category_id" label="Choose category"
                 required="true" :data="$categories"
                 label_key="name" value_key="id"
-                :selected_value="old('category_id')"
+                :selected_value="$product->category->id"
                 onselect="fetchSubCategoriesByCategory"
             />
             <x-error field="category_id"/>
 
             <label for="sub_category_id" class="text-gray-500 text-[.95rem] pl-1.5 mb-2">Sub Category</label>
             <select name="sub_category_id" id="sub_category" class="bw-raw-select mb-2">
-                <option value="">Choose category first</option>
+                @if($product->subCatgory === null)
+                    <option value="" selected>None</option>
+                @endif
+                @foreach($subCatgories as $subCategory)
+                    <option
+                        value="{{$subCategory->id}}"
+                        @selected($subCategory->id === $product->subCategory->id)
+                    >
+                        {{$subCategory->name}}
+                    </option>
+                @endforeach
             </select>
 
             <x-error field="sub_category_id"/>
 
-            <x-dashboard.tinymce-editor name="description"/>
+            <x-dashboard.tinymce-editor name="description">
+                {{$product->description}}
+            </x-dashboard.tinymce-editor>
 
             <x-bladewind::button can-submit="true">Submit</x-bladewind::button>
         </form>

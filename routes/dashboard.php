@@ -24,6 +24,8 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::patch('sub-category/{subCategory:slug}/update', [SubCategoryController::class, 'update'])->name('dashboard.sub-category.update');
     Route::delete('sub-category/{subCategory:slug}/delete', [SubCategoryController::class, 'destroy'])->name('dashboard.sub-category.delete');
 
-    Route::get('product', [ProductController::class, 'create'])->name('dashboard.product.create');
-    Route::post('product', [ProductController::class, 'store']);
+    Route::resource('product', ProductController::class)
+        ->names('dashboard.product')
+        ->parameter('product', 'product:slug')
+        ->except('show');
 });

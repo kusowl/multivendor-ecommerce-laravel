@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class SaveProductRequest extends FormRequest
 {
@@ -23,16 +24,24 @@ class SaveProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => 'required|string|min:3|max:256',
-            'slug' => 'required|min:3|max:256|unique:products',
-            'price' => 'required|numeric',
-            'stock' => 'required|numeric',
+        $rules = [
+            'name' => ['required', 'string', 'min:3', 'max:256'],
+            'slug' => ['required', 'min:3', 'max:256'],
+            'price' => ['required', 'numeric'],
+            'stock' => ['required', 'numeric'],
             'images' => ['required', 'array'],
             'images.*' => ['required', 'image', 'max:'.(config('file.max_image_size') * 1024)],
-            'category_id' => 'required|exists:\App\Models\Category,id',
-            'description' => 'required',
+            'category_id' => ['required', 'exists:\App\Models\Category,id'],
+            'description' => ['required'],
         ];
+
+        if ($this->method() === 'PATCH') {
+            $rules['slug'][] = Rule::unique('products')->ignore($this->route('product'));
+        } else {
+            $rules['slug'] = Rule::unique('products');
+        }
+
+        return $rules;
     }
 
     protected function prepareForValidation()

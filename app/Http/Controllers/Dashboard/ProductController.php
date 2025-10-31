@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\SaveProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Utils\File;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -17,7 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $data = Product::select('slug', 'name', 'image')->paginate(12)->toArray();
+
+        return view('dashboard.product.index', compact('data'));
     }
 
     /**
@@ -63,15 +64,30 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        $subCatgories = $product->category()->subCategories()->all();
+
+        return view('dashboard.product.edit', compact('product', 'categories', 'subCatgories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(SaveProductRequest $request, Product $product)
     {
-        //
+        $data = $request->all();
+        if ($request->hasFile('images')) {
+            $files = [];
+            foreach ($request->file('images') as $image) {
+                $files[] = File::upload($image, 'uploads/product-images');
+            }
+            $data['image'] = implode(',', $files);
+        }
+        $data = array_merge($data, ['vendor_id' => 1]);
+
+        $product->update($data);
+
+        return to_route('dashboard.product.index');
     }
 
     /**
@@ -79,6 +95,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if ($product->image) {
+            File::delete($product->image);
+        }
+        $product->delete();
+
+        return back();
     }
 }

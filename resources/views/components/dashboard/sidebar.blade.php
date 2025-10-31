@@ -16,6 +16,8 @@
             </x-dashboard.sidebar-item>
             <x-dashboard.sidebar-item route="dashboard.product.create" icon="cube">Add Product
             </x-dashboard.sidebar-item>
+            <x-dashboard.sidebar-item route="dashboard.product.index" icon="cube">View All Products
+            </x-dashboard.sidebar-item>
         </ul>
     </div>
 </aside>
