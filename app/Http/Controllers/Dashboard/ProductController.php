@@ -65,7 +65,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        $subCatgories = $product->category()->subCategories()->all();
+        $subCatgories = $product->category->subCategories->all();
 
         return view('dashboard.product.edit', compact('product', 'categories', 'subCatgories'));
     }

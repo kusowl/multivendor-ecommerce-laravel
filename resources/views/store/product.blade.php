@@ -1,4 +1,5 @@
 <x-layouts.store>
+    @vite('resources/css/tiny-mce-store.css')
     <x-store.page-header page="{{$product->name}}"/>
     <section class="single-product">
         <div class="container">
@@ -15,7 +16,7 @@
                                             <img
                                                 src='{{ \App\Utils\File::getImage($image) }}'
                                                 alt=''
-                                                style="width: 100%; height: 100%; object-fit: cover; object-position: center;"
+                                                style="max-width: 100%; max-height: 100%; margin: 0 auto;"
                                                 data-zoom-image="{{ \App\Utils\File::getImage($image) }}"
                                             />
                                         </div>
@@ -109,7 +110,9 @@
                         <div class="tab-content patternbg">
                             <div id="details" class="tab-pane fade active in">
                                 <h4>Product Description</h4>
-                                {!! $product->description !!}
+                                <div class="product_description_tiny_mce">
+                                    {!! $product->description !!}
+                                </div>
                             </div>
                             <div id="reviews" class="tab-pane fade">
                                 <div class="post-comments">
