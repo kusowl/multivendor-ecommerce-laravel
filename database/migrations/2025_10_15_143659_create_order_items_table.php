@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Vendor::class);
             $table->integer('quantity');
             $table->float('price');
-            $table->enum('status', OrderStatus::toArray())->default(OrderStatus::pending);
+            $table->enum('status', OrderStatus::toArray())->default(OrderStatus::Pending);
             $table->timestamps();
         });
     }

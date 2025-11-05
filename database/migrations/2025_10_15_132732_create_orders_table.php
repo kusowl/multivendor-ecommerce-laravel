@@ -23,8 +23,8 @@ return new class extends Migration
             $table->float('sub_total');
             $table->float('shipping_fee')->default(0.00);
             $table->float('discount')->default(0.00);
-            $table->enum('status', OrderStatus::toArray())->default(OrderStatus::pending);
-            $table->enum('payment_status', PaymentStatus::toArray())->default(PaymentStatus::unpaid);
+            $table->enum('status', OrderStatus::toArray())->default(OrderStatus::Pending);
+            $table->enum('payment_status', PaymentStatus::toArray())->default(PaymentStatus::Unpaid);
             $table->enum('payment_method', PaymentMethod::toArray());
             $table->timestamps();
         });

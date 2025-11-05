@@ -8,11 +8,11 @@ enum OrderStatus: string
 {
     use ToArray;
 
-    case pending = 'Pending';
-    case processing = 'Processing';
-    case shipped = 'Shipped';
-    case delivered = 'Delivered';
-    case cancelled = 'Cancelled';
-    case refunded = 'Refunded';
+    case Pending = 'pending';
+    case Processing = 'processing';
+    case Shipped = 'shipped';
+    case Delivered = 'delivered';
+    case Cancelled = 'cancelled';
+    case Refunded = 'refunded';
 
 }

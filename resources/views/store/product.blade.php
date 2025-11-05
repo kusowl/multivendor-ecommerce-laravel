@@ -88,14 +88,20 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <ul class="list-inline dashboard-menu">
-                            <li>
-                                <a href="cart.html" class="btn mt-20">Add To Cart</a>
-                            </li>
-                            <li>
-                                <a href="cart.html" class="btn btn-main mt-20">Buy Now</a>
-                            </li>
-                        </ul>
+                        @csrf
+                        <form action="" method="post" id="productForm">
+                            <ul class="list-inline dashboard-menu">
+                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                <li>
+                                    <a href="cart.html" class="btn mt-20">Add To Cart</a>
+                                </li>
+                                <li>
+                                    <x-store.button id="buyNow" type="button"
+                                                    data-action="{{route('checkout.entry.buynow')}}">Buy Now
+                                    </x-store.button>
+                                </li>
+                            </ul>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -217,4 +223,31 @@
             </div>
         </div>
     </section>
+
+    <script type="text/javascript">
+        document.querySelectorAll('#productForm button').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                console.log(event);
+                const form = document.getElementById('productForm');
+                const formData = new FormData(form);
+                const action = event.currentTarget.getAttribute('data-action');
+                try {
+
+                    const response = await axios.post(action, formData);
+                    const data = response.data;
+                    if (data.redirect) {
+                        window.location.href = data.redirect.url;
+                    }
+                } catch (error) {
+                    if (error.response.status === 401) {
+                        window.location.href = '/login'
+                    } else if (error.response.status === 419) {
+                        window.location.reload();
+                    } else {
+                        console.error('Something gone wrong');
+                    }
+                }
+            })
+        })
+    </script>
 </x-layouts.store>

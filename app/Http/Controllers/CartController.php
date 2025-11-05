@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -69,7 +70,21 @@ class CartController extends Controller
         // Add the product to cart and redirect the user to payment page
         $product = Product::find($request->product_id);
         if ($product && $product->is_active) {
-            return response()->json($product);
+            $user = Auth::user();
+            $cart = $user->cart()->create();
+            $cart->products()->attach($product->id);
+
+            return response()->json([
+                'redirect' => [
+                    'url' => route('checkout.address', $cart),
+                ],
+            ]);
         }
+
+        return response()->json([
+            'error' => [
+                'product' => 'Product not found or Active',
+            ],
+        ], 404);
     }
 }

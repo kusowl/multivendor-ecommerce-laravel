@@ -8,7 +8,8 @@ enum PaymentStatus: string
 {
     use ToArray;
 
-    case unpaid = 'Unpaid';
-    case paid = 'Paid';
-    case refunded = 'refunded';
+    case Unpaid = 'unpaid';
+    case Paid = 'paid';
+    case Refunded = 'refunded';
+    case Failed = 'failed';
 }

@@ -8,7 +8,7 @@ enum PaymentMethod: string
 {
     use ToArray;
 
-    case COD = 'Case On Delivery';
-    case RazorPay = 'Razorpay';
-    case wallet = 'Wallet';
+    case POD = 'pay-on-delivery';
+    case RazorPay = 'razorpay';
+    case Wallet = 'wallet';
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\User::class);
             $table->string('payment_reference')->nullable();
             $table->float('amount');
-            $table->enum('status', PaymentStatus::toArray())->default(PaymentStatus::unpaid);
+            $table->enum('status', PaymentStatus::toArray())->default(PaymentStatus::Unpaid);
             $table->timestamps();
         });
     }
