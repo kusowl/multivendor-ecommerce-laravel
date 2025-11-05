@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\Enums\User\UserRoles;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthenticateSessionRequest;
 use Illuminate\Support\Facades\Auth;
 

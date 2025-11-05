@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Dto\Order\OrderDto;
 use App\Enums\Order\OrderStatus;
 use App\Enums\Payment\PaymentMethod;
 use App\Enums\Payment\PaymentStatus;
+use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;

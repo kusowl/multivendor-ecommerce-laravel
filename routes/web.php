@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AuthenticatedSessionController;
-use App\Http\Controllers\RegisterdUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisterdUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {

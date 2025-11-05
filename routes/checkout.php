@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\RazorPayController;
+use App\Http\Controllers\Api\RazorPayController;
+use App\Http\Controllers\Store\CartController;
+use App\Http\Controllers\Store\CheckoutController;
+use App\Http\Controllers\Store\PaymentController;
 
 Route::middleware('auth')->group(function () {
     Route::post('/checkout/entry/buynow', [CartController::class, 'buyNow'])->name('checkout.entry.buynow');

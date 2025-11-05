@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Store;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderAddressRequest;
 use App\Models\Cart;
 use Illuminate\Http\Request;

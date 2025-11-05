@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\Store\CartController;
 use App\Http\Controllers\Store\StoreCategoryController;
 use App\Http\Controllers\Store\StoreController;
 use App\Http\Controllers\Store\StoreProductController;
