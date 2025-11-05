@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Dto\CartPricesDto;
+use App\Dto\Cart\CartPricesDto;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

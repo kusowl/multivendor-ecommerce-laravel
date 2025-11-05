@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Dto\OrderDto;
-use App\Enums\OrderStatus;
-use App\Enums\PaymentMethod;
-use App\Enums\PaymentStatus;
+use App\Dto\Order\OrderDto;
+use App\Enums\Order\OrderStatus;
+use App\Enums\Payment\PaymentMethod;
+use App\Enums\Payment\PaymentStatus;
 use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;

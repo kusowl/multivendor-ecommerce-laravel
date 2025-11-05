@@ -1,8 +1,8 @@
 <?php
 
-use App\Enums\OrderStatus;
-use App\Enums\PaymentMethod;
-use App\Enums\PaymentStatus;
+use App\Enums\Order\OrderStatus;
+use App\Enums\Payment\PaymentMethod;
+use App\Enums\Payment\PaymentStatus;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

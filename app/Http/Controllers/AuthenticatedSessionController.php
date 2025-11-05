@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\UserRoles;
+use App\Enums\User\UserRoles;
 use App\Http\Requests\AuthenticateSessionRequest;
 use Illuminate\Support\Facades\Auth;
 

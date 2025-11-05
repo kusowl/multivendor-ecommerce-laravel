@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\Order;
 
 use App\Dto\Traits\ToArray;
 use App\Dto\Traits\ToModelArray;
-use App\Enums\OrderStatus;
-use App\Enums\PaymentMethod;
-use App\Enums\PaymentStatus;
+use App\Enums\Order\OrderStatus;
+use App\Enums\Payment\PaymentMethod;
+use App\Enums\Payment\PaymentStatus;
 
 class OrderDto
 {

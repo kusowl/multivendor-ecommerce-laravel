@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\Cart;
 
 use App\Dto\Traits\ToArray;
 use App\Dto\Traits\ToModelArray;
