@@ -6,7 +6,7 @@
             required="true"
             label="Sub-Category name"
         />
-        <x-error field="name"/>
+        <x-dashboard.error field="name"/>
 
         <x-bladewind::select
             name="category_id" label="Select parent category"
@@ -14,7 +14,7 @@
             label_key="name" value_key="id"
             :selected_value="old('category_id')"
         />
-        <x-error field="category_id"/>
+        <x-dashboard.error field="category_id"/>
         <x-bladewind::button can-submit="true">Submit</x-bladewind::button>
     </form>
 </x-layouts.dashboard-form>

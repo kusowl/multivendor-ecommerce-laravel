@@ -14,22 +14,8 @@
               enctype="multipart/form-data">
             @method('PATCH')
             @csrf
-            <x-input-text name="name" required="true" label="Product name" value="{{$product->name}}"/>
 
-            <div class="flex gap-3">
-                <x-input-text name="price" label="Price" required="true" value="{{$product->price}}"/>
-                <x-input-text name="stock" label="Stock" required="true" value="{{$product->stock}}"/>
-            </div>
-
-            <x-bladewind::filepicker
-                name="images[]"
-                show_image_preview="true"
-                accepted-file-types="image/*"
-                max_file_size="{{config('file.max_image_size')}}mb"
-                max_files="5"
-                :selected-value="$selected_images"
-            />
-            <x-error field="images"/>
+            <x-dashboard.error field="images"/>
 
             <x-bladewind::select
                 name="category_id" label="Choose category"
@@ -38,7 +24,7 @@
                 :selected_value="$product->category->id"
                 onselect="fetchSubCategoriesByCategory"
             />
-            <x-error field="category_id"/>
+            <x-dashboard.error field="category_id"/>
 
             <label for="sub_category_id" class="text-gray-500 text-[.95rem] pl-1.5 mb-2">Sub Category</label>
             <select name="sub_category_id" id="sub_category" class="bw-raw-select mb-2">
@@ -55,7 +41,7 @@
                 @endforeach
             </select>
 
-            <x-error field="sub_category_id"/>
+            <x-dashboard.error field="sub_category_id"/>
 
             <x-dashboard.tinymce-editor name="description">
                 {{$product->description}}
