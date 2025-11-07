@@ -18,7 +18,7 @@
                                 <label>Razorpay (Secure payment)</label>
                                 <input type="radio" name="payment_method" value="pod">
                                 <label>Pay on Delivery</label>
-                                <x-error field="payment_method"/>
+                                <x-shared.error field="payment_method"/>
                             </div>
                             <button type="submit" class="btn btn-main">Place your order</button>
                         </form>

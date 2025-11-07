@@ -15,7 +15,7 @@
             @method('PATCH')
             @csrf
 
-            <x-dashboard.error field="images"/>
+            <x-shared.error field="images"/>
 
             <x-bladewind::select
                 name="category_id" label="Choose category"
@@ -24,7 +24,7 @@
                 :selected_value="$product->category->id"
                 onselect="fetchSubCategoriesByCategory"
             />
-            <x-dashboard.error field="category_id"/>
+            <x-shared.error field="category_id"/>
 
             <label for="sub_category_id" class="text-gray-500 text-[.95rem] pl-1.5 mb-2">Sub Category</label>
             <select name="sub_category_id" id="sub_category" class="bw-raw-select mb-2">
@@ -41,7 +41,7 @@
                 @endforeach
             </select>
 
-            <x-dashboard.error field="sub_category_id"/>
+            <x-shared.error field="sub_category_id"/>
 
             <x-dashboard.tinymce-editor name="description">
                 {{$product->description}}

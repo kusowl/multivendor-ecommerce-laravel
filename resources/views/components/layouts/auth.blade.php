@@ -1,3 +1,3 @@
-<x-header/>
+<x-store.header/>
 {{ $slot }}
-<x-footer/>
+<x-store.footer/>

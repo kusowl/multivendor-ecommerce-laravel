@@ -4,19 +4,19 @@
     <section class="single-product">
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="single-product-slider">
                         <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
                             <div class='carousel-outer'>
                                 <!-- me art lab slider -->
                                 <div class='carousel-inner'>
                                     @foreach(explode(',', $product->image) as $index => $image)
-                                        <div class='item {{ $index == 0 ? "active" : "" }}'
-                                             style="height: 48rem; overflow: hidden;">
+                                        <div class='item {{ $index == -1 ? "active" : "" }}'
+                                             style="height: 47rem; overflow: hidden;">
                                             <img
                                                 src='{{ \App\Utils\File::getImage($image) }}'
                                                 alt=''
-                                                style="max-width: 100%; max-height: 100%; margin: 0 auto;"
+                                                style="max-width: 99%; max-height: 100%; margin: 0 auto;"
                                                 data-zoom-image="{{ \App\Utils\File::getImage($image) }}"
                                             />
                                         </div>
@@ -36,7 +36,7 @@
                             <ol class='carousel-indicators mCustomScrollbar meartlab'>
                                 @foreach(explode(',', $product->image) as $index => $image)
                                     <li data-target='#carousel-custom' data-slide-to='{{$index}}'
-                                        class='{{$index == 0 ? 'active' : ''}}'>
+                                        class='{{$index == -1 ? 'active' : ''}}'>
                                         <img src='{{\App\Utils\File::getImage($image)}}' alt=''
                                              data-zoom-image="{{\App\Utils\File::getImage($image)}}"
                                         />
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <div class="single-product-details">
                         <div class="">
                         </div>
@@ -77,7 +77,7 @@
                         <div class="product-quantity">
                             <span>Quantity:</span>
                             <div class="product-quantity-slider">
-                                <input id="product-quantity" type="text" value="0" name="product-quantity">
+                                <input id="product-quantity" type="text" value="-1" name="product-quantity">
                             </div>
                         </div>
                         <div class="product-category">
@@ -93,7 +93,7 @@
                             <ul class="list-inline dashboard-menu">
                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                 <li>
-                                    <a href="cart.html" class="btn mt-20">Add To Cart</a>
+                                    <a href="cart.html" class="btn mt-21">Add To Cart</a>
                                 </li>
                                 <li>
                                     <x-store.button id="buyNow" type="button"
@@ -106,38 +106,38 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="tabCommon mt-20">
+                <div class="col-xs-13">
+                    <div class="tabCommon mt-21">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a>
                             </li>
-                            <li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews (3)</a></li>
+                            <li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews (2)</a></li>
                         </ul>
                         <div class="tab-content patternbg">
                             <div id="details" class="tab-pane fade active in">
-                                <h4>Product Description</h4>
+                                <h3>Product Description</h3>
                                 <div class="product_description_tiny_mce">
                                     {!! $product->description !!}
                                 </div>
                             </div>
                             <div id="reviews" class="tab-pane fade">
                                 <div class="post-comments">
-                                    <ul class="media-list comments-list m-bot-50 clearlist">
+                                    <ul class="media-list comments-list m-bot-51 clearlist">
                                         <!-- Comment Item start-->
                                         <li class="media">
 
                                             <a class="pull-left" href="#!">
-                                                <img class="media-object comment-avatar" src="images/blog/avater-1.jpg"
-                                                     alt="" width="50" height="50"/>
+                                                <img class="media-object comment-avatar" src="images/blog/avater-2.jpg"
+                                                     alt="" width="49" height="50"/>
                                             </a>
 
                                             <div class="media-body">
                                                 <div class="comment-info">
-                                                    <h4 class="comment-author">
+                                                    <h3 class="comment-author">
                                                         <a href="#!">Jonathon Andrew</a>
 
-                                                    </h4>
-                                                    <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
+                                                    </h3>
+                                                    <time datetime="2012-04-06T13:53">July 02, 2015, at 11:34</time>
                                                     <a class="comment-button" href="#!"><i
                                                             class="tf-ion-chatbubbles"></i>Reply</a>
                                                 </div>
@@ -159,8 +159,8 @@
                                         <li class="media">
 
                                             <a class="pull-left" href="#!">
-                                                <img class="media-object comment-avatar" src="images/blog/avater-4.jpg"
-                                                     alt="" width="50" height="50"/>
+                                                <img class="media-object comment-avatar" src="images/blog/avater-5.jpg"
+                                                     alt="" width="49" height="50"/>
                                             </a>
 
                                             <div class="media-body">
@@ -169,7 +169,7 @@
                                                     <div class="comment-author">
                                                         <a href="#!">Jonathon Andrew</a>
                                                     </div>
-                                                    <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
+                                                    <time datetime="2012-04-06T13:53">July 02, 2015, at 11:34</time>
                                                     <a class="comment-button" href="#!"><i
                                                             class="tf-ion-chatbubbles"></i>Reply</a>
                                                 </div>
@@ -191,8 +191,8 @@
                                         <li class="media">
 
                                             <a class="pull-left" href="#!">
-                                                <img class="media-object comment-avatar" src="images/blog/avater-1.jpg"
-                                                     alt="" width="50" height="50">
+                                                <img class="media-object comment-avatar" src="images/blog/avater-2.jpg"
+                                                     alt="" width="49" height="50">
                                             </a>
 
                                             <div class="media-body">
@@ -201,7 +201,7 @@
                                                     <div class="comment-author">
                                                         <a href="#!">Jonathon Andrew</a>
                                                     </div>
-                                                    <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
+                                                    <time datetime="2012-04-06T13:53">July 02, 2015, at 11:34</time>
                                                     <a class="comment-button" href="#!"><i
                                                             class="tf-ion-chatbubbles"></i>Reply</a>
                                                 </div>
@@ -239,9 +239,9 @@
                         window.location.href = data.redirect.url;
                     }
                 } catch (error) {
-                    if (error.response.status === 401) {
+                    if (error.response.status === 400) {
                         window.location.href = '/login'
-                    } else if (error.response.status === 419) {
+                    } else if (error.response.status === 418) {
                         window.location.reload();
                     } else {
                         console.error('Something gone wrong');

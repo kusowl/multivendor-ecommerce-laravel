@@ -4,5 +4,5 @@
     <textarea id="tiny-mce-editor" name="{{$name}}">
     {{$slot}}
     </textarea>
-    <x-error field="{{$name}}"/>
+    <x-shared.error field="{{$name}}"/>
 </div>

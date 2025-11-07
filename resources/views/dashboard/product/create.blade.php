@@ -17,7 +17,7 @@
                 max_file_size="{{config('file.max_image_size')}}mb"
                 max_files="5"
             />
-            <x-dashboard.error field="images"/>
+            <x-shared.error field="images"/>
 
             <x-bladewind::select
                 name="category_id" label="Choose category"
@@ -26,14 +26,14 @@
                 :selected_value="old('category_id')"
                 onselect="fetchSubCategoriesByCategory"
             />
-            <x-dashboard.error field="category_id"/>
+            <x-shared.error field="category_id"/>
 
             <label for="sub_category_id" class="text-gray-500 text-[.95rem] pl-1.5 mb-2">Sub Category</label>
             <select name="sub_category_id" id="sub_category" class="bw-raw-select mb-2">
                 <option value="">Choose category first</option>
             </select>
 
-            <x-dashboard.error field="sub_category_id"/>
+            <x-shared.error field="sub_category_id"/>
 
             <x-.dashboard.tinymce-editor name="description"/>
 

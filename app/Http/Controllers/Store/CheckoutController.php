@@ -26,7 +26,7 @@ class CheckoutController extends Controller
         $products = $cart->products;
         $prices = $cart->getPrices();
 
-        return view('store.checkout', compact('cart', 'products', 'prices'));
+        return view('store.checkout.checkout', compact('cart', 'products', 'prices'));
     }
 
     /**
@@ -75,6 +75,6 @@ class CheckoutController extends Controller
     {
         $status = session()->pull('paymentStatus', 'doNotExist');
 
-        return view('store.payment-confirmation', compact('status'));
+        return view('store.checkout.payment-confirmation', compact('status'));
     }
 }

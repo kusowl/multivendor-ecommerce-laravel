@@ -21,7 +21,7 @@ class PaymentController extends Controller
      */
     public function create(Cart $cart)
     {
-        return view('store.payment', compact('cart'));
+        return view('store.checkout.payment', compact('cart'));
     }
 
     /**

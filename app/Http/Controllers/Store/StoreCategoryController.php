@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Store;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class StoreCategoryController extends Controller
@@ -12,6 +13,6 @@ class StoreCategoryController extends Controller
     {
         $categories = Category::with('subCategories')->get()->chunk(3);
 
-        return view('store.categories', compact('categories'));
+        return view('store.categories.index', compact('categories'));
     }
 }

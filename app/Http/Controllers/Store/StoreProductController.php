@@ -13,7 +13,7 @@ class StoreProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('store.products.index');
     }
 
     /**
@@ -34,7 +34,7 @@ class StoreProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('store.product', compact('product'));
+        return view('store.products.show', compact('product'));
     }
 
     /**
