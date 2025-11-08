@@ -1,4 +1,4 @@
-<x-layouts.store>
+<x-layouts.store :title="$title">
     <section class="products section">
         <div class="container">
             <div class="row">

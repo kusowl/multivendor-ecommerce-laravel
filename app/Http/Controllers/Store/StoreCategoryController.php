@@ -8,6 +8,7 @@ use App\Dto\SubCategory\SubCategoryDto;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Utils\TitleBuilder;
 use Illuminate\Support\ItemNotFoundException;
 use Illuminate\View\View;
 
@@ -16,8 +17,9 @@ class StoreCategoryController extends Controller
     public function index(): View
     {
         $categories = Category::with('subCategories')->get()->chunk(3);
+        $title = new TitleBuilder()->add('Categories')->build();
 
-        return view('store.categories.index', compact('categories'));
+        return view('store.categories.index')->with('categories', $categories)->with('title', $title);
     }
 
     public function show(Category $category)
@@ -26,7 +28,7 @@ class StoreCategoryController extends Controller
             $subCategories = $categoryItem
                 ->subCategories()
                 ->get()
-                ->map(fn($item) => new SubCategoryDto(
+                ->map(fn ($item) => new SubCategoryDto(
                     id: $item->id,
                     name: $item->name,
                     slug: $item->slug,
@@ -43,12 +45,15 @@ class StoreCategoryController extends Controller
             );
         });
 
-        $products = $category->productes()->get()->map(fn($item) => ProductItemDto::fromModel($item));
+        $products = $category->productes()->get()->map(fn ($item) => ProductItemDto::fromModel($item));
+
+        $title = new TitleBuilder()->add($category->name)->build();
 
         return view('store.products.index')
             ->with('categories', $categories)
             ->with('category', $category)
-            ->with('products', $products);
+            ->with('products', $products)
+            ->with('title', $title);
     }
 
     public function showSubCategory(Category $category, $subCategorySlug)
@@ -57,7 +62,7 @@ class StoreCategoryController extends Controller
             $subCategories = $categoryItem
                 ->subCategories()
                 ->get()
-                ->map(fn($item) => new SubCategoryDto(
+                ->map(fn ($item) => new SubCategoryDto(
                     id: $item->id,
                     name: $item->name,
                     slug: $item->slug,
@@ -76,13 +81,16 @@ class StoreCategoryController extends Controller
 
         try {
             $subCategory = SubCategory::where('slug', $subCategorySlug)->get()->sole();
-            $products = $subCategory->products()->get()->map(fn($item) => ProductItemDto::fromModel($item));
+            $products = $subCategory->products()->get()->map(fn ($item) => ProductItemDto::fromModel($item));
+
+            $title = new TitleBuilder()->add($subCategory->name)->build();
 
             return view('store.products.index')
                 ->with('products', $products)
                 ->with('category', $category)
                 ->with('subCategory', $subCategory)
-                ->with('categories', $categories);
+                ->with('categories', $categories)
+                ->with('title', $title);
         } catch (ItemNotFoundException) {
             abort(404);
         }
