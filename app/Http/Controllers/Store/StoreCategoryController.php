@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Store;
 
+use App\Dto\Category\CategoryDto;
+use App\Dto\Product\ProductItemDto;
+use App\Dto\SubCategory\SubCategoryDto;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\SubCategory;
+use Illuminate\Support\ItemNotFoundException;
 use Illuminate\View\View;
 
 class StoreCategoryController extends Controller
@@ -14,5 +18,42 @@ class StoreCategoryController extends Controller
         $categories = Category::with('subCategories')->get()->chunk(3);
 
         return view('store.categories.index', compact('categories'));
+    }
+
+    public function showSubCategory(Category $category, $subCategorySlug)
+    {
+        $categories = Category::with('subCategories')->get()->map(function ($categoryItem) {
+            $subCategories = $categoryItem
+                ->subCategories()
+                ->get()
+                ->map(fn ($item) => new SubCategoryDto(
+                    id: $item->id,
+                    name: $item->name,
+                    slug: $item->slug,
+                    link: route('store.categories.subCategories.show', [$categoryItem, $item->slug]),
+                ));
+
+            return new CategoryDto(
+                id: $categoryItem->id,
+                name: $categoryItem->name,
+                slug: $categoryItem->slug,
+                image: $categoryItem->image,
+                link: route('store.categories.show', $categoryItem),
+                subCategories: $subCategories,
+            );
+        });
+
+        try {
+            $subCategory = SubCategory::where('slug', $subCategorySlug)->get()->sole();
+            $products = $subCategory->products()->get()->map(fn ($item) => ProductItemDto::fromModel($item));
+
+            return view('store.products.index')
+                ->with('products', $products)
+                ->with('category', $category)
+                ->with('subCategory', $subCategory)
+                ->with('categories', $categories);
+        } catch (ItemNotFoundException) {
+            abort(404);
+        }
     }
 }

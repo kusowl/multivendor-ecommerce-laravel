@@ -16,81 +16,25 @@
                     </div>
                     <div class="widget product-category">
                         <h4 class="widget-title">Categories</h4>
-                        <div class="panel-group commonAccordion" id="accordion" role="tablist"
-                             aria-multiselectable="true">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
-                                           href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Shoes
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
-                                     aria-labelledby="headingOne">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#!">Brand & Twist</a></li>
-                                            <li><a href="#!">Shoe Color</a></li>
-                                            <li><a href="#!">Shoe Color</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse"
-                                           data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-                                           aria-controls="collapseTwo">
-                                            Duty Wear
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingTwo">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#!">Brand & Twist</a></li>
-                                            <li><a href="#!">Shoe Color</a></li>
-                                            <li><a href="#!">Shoe Color</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingThree">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse"
-                                           data-parent="#accordion" href="#collapseThree" aria-expanded="false"
-                                           aria-controls="collapseThree">
-                                            WorkOut Shoes
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingThree">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#!">Brand & Twist</a></li>
-                                            <li><a href="#!">Shoe Color</a></li>
-                                            <li><a href="#!">Gladian Shoes</a></li>
-                                            <li><a href="#!">Swis Shoes</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        <x-store.accordian>
+                            @foreach ($categories as $categoryItem)
+                                <x-store.accordian-item :key="$categoryItem->id" :title="$categoryItem->name" :items="$categoryItem->subCategories" :link="$categoryItem->link" :isOpen="$categoryItem->id === $category->id " :activeKey="$subCategory->id"/>
+                            @endforeach
+                        </x-store.accordian>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="row">
-                        <x-store.product/>
+                        @foreach ($products as $product)
+                        <x-store.product :product='$product'/>
+                        @endforeach
+                        @if(count($products) === 0)
+                        <div class="col-md-9">
+                            <p class="text-center">No Products found </p>
+                        </div>
+                        @endif
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
