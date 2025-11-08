@@ -5,9 +5,7 @@ use App\Models\Category;
 it('creates a category', function () {
     $page = visit(route('dashboard.category.create'));
     $page->assertSee('Category Name');
-    $page->fill('name', 'Test Category')
-        ->click('Submit')
-        ->assertUrlIs(route('dashboard.category.create'));
+    $page->fill('name', 'Test Category')->click('Submit')->assertUrlIs(route('dashboard.category.create'));
 });
 
 test('Dashboard shows category details', function () {
@@ -20,20 +18,13 @@ it('creates a sub category', function () {
     $parentCategory = Category::factory()->createOne();
     $page = visit(route('dashboard.sub-category.create'));
     $page->assertSee('Sub-Category Name');
-    $page->fill('name', 'Test Sub-Category')
+    $page
+        ->fill('name', 'Test Sub-Category')
         ->click('Select parent category')
         ->assertSee($parentCategory->name)
         ->click($parentCategory->name)
         ->click('Submit')
         ->assertUrlIs(route('dashboard.sub-category.create'));
-
-});
-
-test('Store has Category page', function () {
-    $category = Category::factory()->createOne();
-    $page = visit(route('store.categories'));
-    $page->assertSee('Categories')
-        ->assertSee($category->name);
 });
 
 // This is test is disabled for pest bug
@@ -51,9 +42,16 @@ test('Store has Category page', function () {
 it('Deletes a category', function () {
     $category = Category::factory()->createOne();
     $page = visit(route('dashboard.category'));
-    $page->press('//button[contains(@onclick, "showModal")]')
+    $page
+        ->press('//button[contains(@onclick, "showModal")]')
         ->assertSee('Delete Category')
         ->press('Yes')
         ->screenshot()
         ->assertDontSee($category->name);
+});
+
+test('Store has Category page', function () {
+    $category = Category::factory()->createOne();
+    $page = visit(route('store.categories'));
+    $page->assertSee('Categories')->assertSee($category->name);
 });

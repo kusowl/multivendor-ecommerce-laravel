@@ -18,7 +18,7 @@
                         <h4 class="widget-title">Categories</h4>
                         <x-store.accordian>
                             @foreach ($categories as $categoryItem)
-                                <x-store.accordian-item :key="$categoryItem->id" :title="$categoryItem->name" :items="$categoryItem->subCategories" :link="$categoryItem->link" :isOpen="$categoryItem->id === $category->id " :activeKey="$subCategory->id"/>
+                                <x-store.accordian-item :key="$categoryItem->id" :title="$categoryItem->name" :items="$categoryItem->subCategories" :link="$categoryItem->link" :isOpen="$categoryItem->id === $category->id " :activeKey="isset($subCategory) ? $subCategory->id : null"/>
                             @endforeach
                         </x-store.accordian>
                     </div>
