@@ -1,10 +1,14 @@
-<x-layouts.auth>
+<x-layouts.auth :title="$title">
     <section class="signin-page account">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="block text-center">
-                        <h2 class="text-center">Welcome Back</h2>
+                        @if(session('message'))
+                            <h2 class="text-center">{{session('message')}}</h2>
+                        @else
+                            <h2 class="text-center">Welcome Back</h2>
+                        @endif
                         <form class="text-left clearfix" action="{{route('login')}}" method="post">
                             @csrf
                             <div class="form-group">

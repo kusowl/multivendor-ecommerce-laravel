@@ -5,17 +5,19 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRegisterUserRequest;
 use App\Models\User;
+use App\Utils\TitleBuilder;
 use Illuminate\Http\Request;
 
 class RegisterdUserController extends Controller
 {
     public function create(Request $request)
     {
-        return view('auth.register');
+        return view('auth.register')->with('title', new TitleBuilder()->add('Register')->build());
     }
 
     public function store(StoreRegisterUserRequest $request)
     {
         User::create($request->all());
+        return to_route('login')->with('message', 'Account Created! Login Now');
     }
 }

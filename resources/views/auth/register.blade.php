@@ -1,4 +1,4 @@
-<x-layouts.auth>
+<x-layouts.auth :title="$title">
     <section class="signin-page account">
         <div class="container">
             <div class="row">
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-main text-center">Sign In</button>
+                                <button type="submit" class="btn btn-main text-center">Sign Up</button>
                             </div>
                         </form>
                         <p class="mt-20">Already hava an account ?<a href="{{route('login')}}"> Login</a></p>

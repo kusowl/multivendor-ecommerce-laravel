@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Enums\User\UserRoles;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthenticateSessionRequest;
+use App\Utils\TitleBuilder;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
     public function create()
     {
-        return view('auth.login');
+        return view('auth.login')->with('title', new TitleBuilder()->add('Login')->build());
     }
 
     public function store(AuthenticateSessionRequest $request)
