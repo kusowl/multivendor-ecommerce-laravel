@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
              * Take 3 recent products from user cart, and transfrom it in DTO.
              */
             if (Auth::check()) {
-                $userCart = Auth::user()->cart()->createOrFirst();
+                $userCart = Auth::user()->cart()->firstOrCreate();
                 $productsDto = $userCart
                     ->products()
                     ->withPivot('quantity')
