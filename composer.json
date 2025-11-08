@@ -16,6 +16,7 @@
         "razorpay/razorpay": "^2.9"
     },
     "require-dev": {
+        "carthage-software/mago": "^1.0.0-beta.34",
         "fakerphp/faker": "^1.23",
         "laradumps/laradumps": "^4.0",
         "larastan/larastan": "^3.0",
@@ -89,6 +90,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
+            "carthage-software/mago": true,
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
         }
