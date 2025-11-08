@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\RazorPayController;
 use App\Http\Controllers\Store\CartController;
 use App\Http\Controllers\Store\CheckoutController;
 use App\Http\Controllers\Store\PaymentController;
+use Illuminate\Support\Facades\Route;
 
 Route::post('/checkout/entry/buynow', [CartController::class, 'buyNow'])->name('checkout.entry.buynow');
 

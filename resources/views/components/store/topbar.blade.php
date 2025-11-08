@@ -31,13 +31,14 @@
                 <!-- Cart -->
                 <ul class="top-menu text-right list-inline">
                     <li class="dropdown cart-nav dropdown-slide">
-                       <x-store.cart />
+                        <x-store.cart/>
                     </li><!-- / Cart -->
 
                     <!-- Search -->
                     <li class="dropdown search dropdown-slide">
-                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-                                class="tf-ion-ios-search-strong"></i> Search</a>
+                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                            <i class="tf-ion-ios-search-strong"></i> Search
+                        </a>
                         <ul class="dropdown-menu search-dropdown">
                             <li>
                                 <form action="post"><input type="search" class="form-control" placeholder="Search...">
@@ -46,17 +47,42 @@
                         </ul>
                     </li><!-- / Search -->
 
-                     <!--Languages -->
-                    <!--<li class="commonSelect">
-                        <select class="form-control">
-                            <option>EN</option>
-                            <option>DE</option>
-                            <option>FR</option>
-                            <option>ES</option>
-                        </select>
-                    </li><!-- / Languages -->
+                    <!-- Account -->
+                    @guest
+                        <li class="dropdown search dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                                <i class="tf-ion-person"></i> Account
+                            </a>
+                            <ul class="dropdown-menu  dashboard-menu search-dropdown list-inline">
+                                <li class="li">
+                                    <a href="{{route('login')}}" class="btn">Login</a>
+                                </li>
+                                <li class="li"><a href="{{route('register')}}" class="btn">Register</a></li>
+                            </ul>
+                        </li>
+                    @endguest
+                    <!-- / Account -->
 
-                </ul><!-- / .nav .navbar-nav .navbar-right -->
+                    @auth
+                        <li class="dropdown search dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                                <i class="tf-ion-person"></i> {{auth()->user()->name}}
+                            </a>
+                            <ul class="dropdown-menu  dashboard-menu search-dropdown">
+                                <li class="li">
+                                    <a href="#!" class="btn mt-12">Account Settings</a>
+                                </li>
+                                <li class="li"><a href="#!" class="btn mt-12">Orders</a></li>
+                                <li class="li">
+                                    <form method="post" action="{{route('logout')}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn mt-12" type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endguest               </ul>
             </div>
         </div>
     </div>

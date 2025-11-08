@@ -6,6 +6,7 @@ use App\Enums\User\UserRoles;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthenticateSessionRequest;
 use App\Utils\TitleBuilder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
@@ -18,6 +19,7 @@ class AuthenticatedSessionController extends Controller
     public function store(AuthenticateSessionRequest $request)
     {
         if (Auth::attempt($request->only(['email', 'password']))) {
+            $request->session()->regenerateToken();
             if (Auth::user()->role == UserRoles::Customer->value) {
                 return to_route('home');
             } else {
@@ -26,5 +28,18 @@ class AuthenticatedSessionController extends Controller
         }
 
         return back()->withInput($request->except('password'))->withErrors(['email' => 'No matching user found']);
+    }
+
+    public function destroy(Request $request)
+    {
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return to_route('home');
+
     }
 }

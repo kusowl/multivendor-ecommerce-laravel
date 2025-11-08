@@ -15,5 +15,4 @@ class CartPricesDto
         public int $discount,
         public int $total,
     ) {}
-
 }

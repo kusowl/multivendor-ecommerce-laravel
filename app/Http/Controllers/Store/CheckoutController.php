@@ -37,6 +37,8 @@ class CheckoutController extends Controller
         if ($request->payment_method === 'razorpay') {
             return to_route('checkout.payment', $cart);
         }
+
+        return back();
     }
 
     /**

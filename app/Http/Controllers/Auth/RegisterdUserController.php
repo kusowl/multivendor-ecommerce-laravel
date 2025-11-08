@@ -18,6 +18,7 @@ class RegisterdUserController extends Controller
     public function store(StoreRegisterUserRequest $request)
     {
         User::create($request->all());
+
         return to_route('login')->with('message', 'Account Created! Login Now');
     }
 }
