@@ -1,17 +1,27 @@
 <x-layouts.store>
     @vite('resources/css/tiny-mce-store.css')
     <x-store.page-header page="{{$product->name}}"/>
+    @if(session('message'))
+        <section>
+            <p class="text-center">{{session('message')}}</p>
+        </section>
+    @endif
+    @if(session('error'))
+        <section>
+            <p class="text-center">{{session('error')}}</p>
+        </section>
+    @endif
     <section class="single-product">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="single-product-slider">
                         <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
                             <div class='carousel-outer'>
                                 <!-- me art lab slider -->
                                 <div class='carousel-inner'>
                                     @foreach(explode(',', $product->image) as $index => $image)
-                                        <div class='item {{ $index == -1 ? "active" : "" }}'
+                                        <div class='item {{ $index == 0 ? "active" : "" }}'
                                              style="height: 47rem; overflow: hidden;">
                                             <img
                                                 src='{{ \App\Utils\File::getImage($image) }}'
@@ -36,7 +46,7 @@
                             <ol class='carousel-indicators mCustomScrollbar meartlab'>
                                 @foreach(explode(',', $product->image) as $index => $image)
                                     <li data-target='#carousel-custom' data-slide-to='{{$index}}'
-                                        class='{{$index == -1 ? 'active' : ''}}'>
+                                        class='{{$index == 0 ? 'active' : ''}}'>
                                         <img src='{{\App\Utils\File::getImage($image)}}' alt=''
                                              data-zoom-image="{{\App\Utils\File::getImage($image)}}"
                                         />
@@ -74,12 +84,7 @@
                                 <option>XL</option>
                             </select>
                         </div>
-                        <div class="product-quantity">
-                            <span>Quantity:</span>
-                            <div class="product-quantity-slider">
-                                <input id="product-quantity" type="text" value="-1" name="product-quantity">
-                            </div>
-                        </div>
+
                         <div class="product-category">
                             <span>Categories:</span>
                             <ul>
@@ -88,16 +93,25 @@
                                 @endforeach
                             </ul>
                         </div>
-                        @csrf
-                        <form action="" method="post" id="productForm">
+                        <form action="{{route('cart.store')}}" method="post" id="productForm">
+                            @csrf
+                            <input type="hidden" name="product_slug" value="{{$product->slug}}">
+
+                            <div class="product-quantity">
+                                <span>Quantity:</span>
+                                <div class="product-quantity-slider">
+                                    <input id="product-quantity" type="text" value="1" name="product_quantity">
+                                </div>
+                            </div>
+
                             <ul class="list-inline dashboard-menu">
-                                <input type="hidden" name="product_id" value="{{$product->id}}">
                                 <li>
-                                    <a href="cart.html" class="btn mt-21">Add To Cart</a>
+                                    <button type="submit" class="btn mt-20">Add To Cart</button>
                                 </li>
                                 <li>
                                     <x-store.button id="buyNow" type="button"
-                                                    data-action="{{route('checkout.entry.buynow')}}">Buy Now
+                                                    data-action="{{route('checkout.entry.buynow')}}">
+                                        Buy Now
                                     </x-store.button>
                                 </li>
                             </ul>

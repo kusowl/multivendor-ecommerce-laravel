@@ -11,10 +11,12 @@ class Cart extends Model
 {
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class)
-            ->withPivot('quantity');
+        return $this->belongsToMany(Product::class)->withPivot('quantity');
     }
 
+    /**
+     * getPrices() is related to data thats why i kept it here.
+     */
     public function getPrices(): CartPricesDto
     {
         $subTotal = $this->products->sum(fn ($p) => $p->price * $p->pivot->quantity);
