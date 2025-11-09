@@ -13,7 +13,12 @@
                         <a href="#!"><i class="tf-ion-ios-heart"></i></a>
                     </li>
                     <li>
-                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
+                        <form action="{{route('cart.store')}}" method="POST" id="cart-form">
+                            @csrf
+                            <input type="hidden" name="product_slug" value="{{$product->slug}}" />
+                            <input type="hidden" name="product_quantity" value="1" />
+                            <a href="javascript:void(0)" onclick="document.getElementById('cart-form').submit()"><i class="tf-ion-android-cart"></i></a>
+                        </form>
                     </li>
                 </ul>
             </div>
