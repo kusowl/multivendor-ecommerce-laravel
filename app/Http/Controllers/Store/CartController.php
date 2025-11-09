@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveCartRequest;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Services\CartService;
+use App\Utils\TitleBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +20,11 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $cartDto = app(CartService::class)->getCartDto();
+
+        return view('store.cart.index')
+            ->with('title', new TitleBuilder()->add('Cart')->build())
+            ->with('cart', $cartDto);
     }
 
     /**
