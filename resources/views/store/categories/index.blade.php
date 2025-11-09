@@ -23,7 +23,7 @@
                                         <div class="panel-body">
                                             <ul>
                                                 @foreach($item->subCategories as $subItem)
-                                                    <li><a href="#!">{{$subItem->name}}</a></li>
+                                                    <li><a href="{{route('store.categories.subCategories.show', [$item->slug, $subItem->slug])}}">{{$subItem->name}}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>
