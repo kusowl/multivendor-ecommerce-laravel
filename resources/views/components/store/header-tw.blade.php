@@ -1,0 +1,45 @@
+@props(['title'])
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>{{$title}}</title>
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Fashion based E-Commerce Store">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="author" content="Kushal Saha">
+    <meta name="generator" content="Themefisher Constra HTML Template v1.0">
+
+    <!-- theme meta -->
+    <meta name="theme-name" content="aviato"/>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
+
+    <!-- Themefisher Icon font -->
+    <!--<link rel="stylesheet" href="{{asset('plugins/themefisher-font/style.css')}}">-->
+    <!-- bootstrap.min css -->
+    <!--<link rel="stylesheet" href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}">-->
+
+    <!-- Animate css -->
+    <!--<link rel="stylesheet" href="{{asset('plugins/animate/animate.css')}}">-->
+    <!-- Slick Carousel -->
+    <!--<link rel="stylesheet" href="{{asset('plugins/slick/slick.css')}}">-->
+    <!--<link rel="stylesheet" href="{{asset('plugins/slick/slick-theme.css')}}">-->
+
+    <!-- Main Stylesheet -->
+    <!--<link rel="stylesheet" href="{{asset('css/style.css')}}">-->
+       <!--Additional CSS -->
+    <link href="{{ asset('vendor/bladewind/css/animate.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('vendor/bladewind/css/bladewind-ui.min.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<script src="//unpkg.com/alpinejs" defer></script>
+<body id="body" class="flex justify-center">
