@@ -97,4 +97,12 @@ class CartController extends Controller
             ],
         ], 404);
     }
+
+    public function removeProduct(Product $product)
+    {
+        $cart = Auth::user()->cart;
+        $cart->products()->detach($product->id);
+
+        return redirect()->back();
+    }
 }
