@@ -15,7 +15,7 @@
      <h6>*includes discount & fees</h6>
      <ul class="text-center cart-buttons">
          <li><a href="{{route('cart.index')}}" class="btn btn-small">View Cart</a></li>
-         <li><a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a></li>
+         <li><a href="{{route('checkout.index')}}" class="btn btn-small btn-solid-border">Checkout</a></li>
      </ul>
      @else
      <p>Add items to cart.</p>

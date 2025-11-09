@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Store;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderAddressRequest;
 use App\Models\Cart;
+use App\Services\CartService;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -14,8 +15,9 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        //
+        $cartDto = app(CartService::class)->getCartDto();
 
+        return view('store.checkout.index')->with('cart', $cartDto);
     }
 
     /**

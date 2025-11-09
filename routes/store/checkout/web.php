@@ -18,3 +18,5 @@ Route::post('/checkout/payment/razorpay/verify', [RazorPayController::class, 've
 Route::get('/checkout/payment/confirmation', [CheckOutController::class, 'confirmation'])->name(
     'checkout.payment.razorpay.verify',
 );
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
