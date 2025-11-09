@@ -100,7 +100,7 @@
                             <div class="product-quantity">
                                 <span>Quantity:</span>
                                 <div class="product-quantity-slider">
-                                    <input id="product-quantity" type="text" value="1" name="product_quantity">
+                                    <input id="product-quantity" type="text" value="1" name="product_quantity" class="form-control">
                                 </div>
                             </div>
 

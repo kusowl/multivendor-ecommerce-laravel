@@ -78,7 +78,8 @@ class CartController extends Controller
     public function buyNow(Request $request)
     {
         // Add the product to cart and redirect the user to payment page
-        $product = Product::find($request->product_slug);
+        $product = Product::where('slug', trim($request->product_slug))->first();
+        ds($request->product_slug, $product);
         if ($product && $product->is_active) {
             $user = Auth::user();
             $cart = $user->cart()->create();

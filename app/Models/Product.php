@@ -9,7 +9,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Product extends Model
 {
     protected $fillable = [
-        'name', 'slug', 'price', 'stock', 'description', 'category_id', 'sub_category_id', 'vendor_id', 'image',
+        'name',
+        'slug',
+        'price',
+        'stock',
+        'description',
+        'category_id',
+        'sub_category_id',
+        'vendor_id',
+        'image',
+        'is_active',
     ];
 
     public function category(): BelongsTo
@@ -24,8 +33,7 @@ class Product extends Model
 
     public function carts(): BelongsToMany
     {
-        return $this->belongsToMany(Cart::class)
-            ->withPivot('quantity');
+        return $this->belongsToMany(Cart::class)->withPivot('quantity');
     }
 
     public function vendor(): BelongsTo
