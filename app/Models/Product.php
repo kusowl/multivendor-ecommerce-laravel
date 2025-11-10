@@ -40,4 +40,9 @@ class Product extends Model
     {
         return $this->belongsTo(Vendor::class, 'vendor_id');
     }
+
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class)->withPivot('quantity');
+    }
 }

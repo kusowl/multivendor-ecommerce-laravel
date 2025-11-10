@@ -11,4 +11,5 @@ Route::middleware('auth')->group(function () {
     require __DIR__.'/cart/web.php';
     require __DIR__.'/checkout/web.php';
     require __DIR__.'/checkout/api.php';
+    require __DIR__.'/order/web.php';
 });
