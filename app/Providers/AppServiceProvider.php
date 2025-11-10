@@ -5,8 +5,10 @@ namespace App\Providers;
 use App\Dto\Cart\CartDto;
 use App\Dto\Cart\CartProductItemDto;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
 
@@ -56,5 +58,7 @@ class AppServiceProvider extends ServiceProvider
             }
             $view->with('cart', $cartDto);
         });
+
+        // Route::model('subCategory', SubCategory::class);
     }
 }

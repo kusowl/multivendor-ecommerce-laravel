@@ -1,0 +1,48 @@
+@layer components {
+    .ui-card {
+        @apply card border bg-base-100 border-base-300 text-base-content p-4;
+    }
+
+    .progress-bar {
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .progress-fill {
+        height: 100%;
+        transition: width 0.5s ease;
+    }
+    .tracking-step {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 20px;
+    }
+    .tracking-step:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 5px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #e5e7eb;
+    }
+    .tracking-step.active:before {
+        background-color: #3b82f6;
+    }
+    .tracking-step.completed:before {
+        background-color: #10b981;
+    }
+    .tracking-step:not(:last-child):after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 21px;
+        width: 2px;
+        height: calc(100% + 10px);
+        background-color: #e5e7eb;
+    }
+    .tracking-step.completed:after {
+        background-color: #10b981;
+    }
+}
