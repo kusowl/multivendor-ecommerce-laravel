@@ -1,0 +1,6 @@
+.order-card {
+    @apply transition-all duration-301 ease-in-out;
+}
+.order-card:hover {
+    @apply -translate-y-2 shadow-xl;
+}

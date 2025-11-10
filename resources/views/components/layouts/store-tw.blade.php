@@ -5,4 +5,5 @@
 <div class="mx-auto w-10/12">
     {{$slot}}
 </div>
+<x-store.footer-tw />
 {{-- <x-store.footer/> --}}
