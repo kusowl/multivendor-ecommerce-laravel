@@ -13,20 +13,21 @@
 
     <div class="flex flex-col gap-6 md:flex-row">
         <div class="md:w-2/3">
-            @foreach ($order->items as $product)
+            @foreach ($order->items as $item)
                 <div class="mb-4 flex items-center gap-4">
                     <div class="avatar">
-                        <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-200">
-                            <i class="fas fa-tshirt text-2xl text-gray-500"></i>
+                        <div class="w-24 h-24 rounded-xl">
+                            <img src="{{\App\Utils\File::getImage($item->product->images()->first())}}" alt=""
+                                 class="h-full">
                         </div>
                     </div>
                     <div>
-                        <h4 class="font-semibold">{{ $product->product->name }}</h4>
+                        <h4 class="font-semibold">{{ $item->product->name }}</h4>
                         <p class="text-gray-500">Size: M, Color: Blue</p>
-                        <p class="text-gray-500">Quantity: {{ $product->product->quantity }}</p>
+                        <p class="text-gray-500">Quantity: {{ $item->quantity }}</p>
                     </div>
                     <div class="ml-auto">
-                        <p class="font-semibold">$24.99</p>
+                        <p class="font-semibold">${{$item->product->price}}</p>
                     </div>
                 </div>
             @endforeach
