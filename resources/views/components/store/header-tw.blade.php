@@ -1,5 +1,5 @@
 @props(['title'])
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -24,4 +24,4 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body id="body" class="flex justify-center bg-base-200">
+<body id="body" class="flex justify-center bg-base-200 flex-col">

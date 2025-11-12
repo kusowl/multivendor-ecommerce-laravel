@@ -1,9 +1,9 @@
 @props(['title' => config('app.name')." - Fashion Store"])
 <x-store.header-tw :title="$title"/>
+<x-store.navbar/>
 {{-- <x-store.topbar/> --}}
-{{-- <x-store.navbar/> --}}
-<div class="mx-auto w-10/12">
+<div class="mx-auto w-10/12 px-4 py-8">
     {{$slot}}
 </div>
-<x-store.footer-tw />
+<x-store.footer-tw/>
 {{-- <x-store.footer/> --}}
