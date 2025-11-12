@@ -1,4 +1,4 @@
-<nav class="bg-base-100 border-b border-b-base-300 shadow-lg shadow-base-content/5 sticky top-0 z-50">
+<nav class="bg-base-100 border-b border-b-base-300 sticky top-0 z-50">
     <div class="navbar mx-auto w-10/12">
         <div class="flex-1 flex gap-2">
             <a href="/" class="btn btn-ghost text-xl">{{config('app.name')}}</a>

@@ -31,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Facades\View::composer('components.store.navbar', function (View $view) {
-            $categories = Category::where('sub_categories_count', '>=', 3)->take(3)->get();
+        Facades\View::composer('components.store.topbar', function (View $view) {
+            $categories = Category::with('subCategories')->get();
             $view->with('categories', $categories);
         });
 
