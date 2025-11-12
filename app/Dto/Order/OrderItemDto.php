@@ -10,7 +10,7 @@ use App\Enums\Payment\PaymentMethod;
 use App\Enums\Payment\PaymentStatus;
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class OrderItemDto
 {
@@ -27,7 +27,7 @@ class OrderItemDto
         public readonly OrderStatus $status,
         public readonly PaymentStatus $paymentStatus,
         public readonly PaymentMethod $paymentMethod,
-        public readonly array|null|Collection $items,
+        public readonly array|null|Collection $items = null,
     ) {}
 
     public static function fromModel(Order $order): self
@@ -52,7 +52,7 @@ class OrderItemDto
     public static function productsFromModel(array|Collection $products): array|Collection
     {
         return $products->map(function ($item) {
-            return new OrderProductItemDto(ProductItemDto::fromModel($item), $item->pivot->quanity);
+            return new OrderProductItemDto(ProductItemDto::fromModel($item), $item->pivot->quantity);
         });
     }
 }

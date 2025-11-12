@@ -8,9 +8,9 @@ use App\Dto\Product\ProductItemDto;
 class OrderProductItemDto extends CartProductItemDto
 {
     public function __construct(
-        public readonly ProductItemDto $product,
-        public readonly int $quantity = 1,
-        public readonly int $total = 0,
+        public ProductItemDto $product,
+        public int $quantity = 1,
+        public int $total = 0,
     ) {
         parent::__construct($this->product, $this->quantity, $this->total);
     }
