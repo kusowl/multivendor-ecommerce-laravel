@@ -2,29 +2,21 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Dto\Order\OrderDto;
+use App\Dto\Order\OrderItemDto;
 use App\Enums\Order\OrderStatus;
 use App\Enums\Payment\PaymentMethod;
 use App\Enums\Payment\PaymentStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Services\OrderService;
+use App\Services\PaymentServices\RazorPayService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Razorpay\Api\Api;
-use Razorpay\Api\Errors\SignatureVerificationError;
 
 class RazorPayController extends Controller
 {
-    protected Api $razorpay;
-
-    public function __construct()
-    {
-        $this->razorpay = new Api(config('razorpay.razorpay_key'), config('razorpay.razorpay_secret'));
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -39,7 +31,7 @@ class RazorPayController extends Controller
     public function create(Cart $cart)
     {
         $cartPrices = $cart->getPrices();
-        $orderDto = new OrderDto(
+        $orderDto = new OrderItemDto(
             userId: $cart->customer->id ?? Auth::user()->id,
             orderNo: $cart->id,
             totalAmount: $cartPrices->total,
@@ -56,34 +48,16 @@ class RazorPayController extends Controller
                 'cart_id' => $orderDto->orderNo,
                 'amount' => $orderDto->totalAmount,
             ]);
-            $order = DB::transaction(function () use ($cart, $orderDto) {
-                $order = Order::create($orderDto->toModelArray());
-                $cart->delete();
 
-                return $order;
-            });
-            $amount = $cartPrices->total;
-
-            if (! $order) {
-                throw new \Exception('Order Creation failed');
-            }
-
-            $receipt = (string) $order->id;
-            $amount *= 100;
-            $currency = 'INR';
-            $razorPayOrder = $this->razorpay->order->create(compact('receipt', 'amount', 'currency'))->toArray();
-            Log::info('RazorPay order created', [
-                'razorpay_order_id' => $razorPayOrder['id'] ?? null,
-                'order_id' => $order->id,
-            ]);
+            $order = new OrderService(new RazorPayService)->createOrderFromCart($cart, $orderDto);
 
             return response()->json([
-                'razorPayOrder' => $razorPayOrder,
+                'razorPayOrder' => $order,
             ]);
         } catch (\Exception $e) {
             Log::error('Error in RazorPayController@create', [
-                $e->getTraceAsString(),
                 $e->getMessage(),
+                $e->getTraceAsString(),
             ]);
 
             return response()->json([
@@ -136,22 +110,22 @@ class RazorPayController extends Controller
     public function verify(Request $request)
     {
         try {
-            Log::info('Verifying RazorPayOrder', [
-                'razorpay_order_id' => $request->input('razorpay_order_id'),
-                'razorpay_payment_id' => $request->input('razorpay_payment_id'),
 
-            ]);
-            $this->razorpay->utility->verifyPaymentSignature($request->only([
-                'razorpay_order_id', 'razorpay_payment_id', 'razorpay_signature',
-            ]));
+            if (! app(RazorPayService::class)->verify($request)) {
+                session()->put('paymentStaus', 'failed');
 
-            // If no exception is occurred then payment is successfully.
+                return response()->json([
+                    'message' => 'Payment verification failed',
+                ], 400);
+            }
+
             // update the order status
             $order = Order::where('id', $request->receipt)->first();
             if (! $order) {
                 throw new \Exception('Order not found for receipt'.$request->receipt);
             }
-            $order->payment_status = PaymentStatus::Paid;
+
+            $order->payment_status = PaymentStatus::Paid->value;
             $order->save();
 
             Log::info('Payment Verified and Order Updated', [
@@ -164,17 +138,6 @@ class RazorPayController extends Controller
             return response()->json([
                 'success' => 'Payment successful',
             ]);
-        } catch (signatureverificationerror $e) {
-            Log::warning('Razorpay Payment Signature verification failed', [
-                'error' => $e->getMessage(),
-                'request' => $request->all(),
-            ]);
-            session()->put('paymentStaus', 'failed');
-
-            return response()->json([
-                'error' => 'Payment verification failed',
-                'message' => $e->getMessage(),
-            ], 400);
         } catch (\Exception $e) {
             Log::error('Error in RazorPayController@verify', [
                 $e->getMessage(),
