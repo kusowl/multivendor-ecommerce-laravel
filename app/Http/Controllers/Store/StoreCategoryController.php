@@ -83,7 +83,7 @@ class StoreCategoryController extends Controller
 
         try {
             $subCategory = SubCategory::where('slug', $subCategorySlug)->get()->sole();
-            $products = $subCategory->products()->get()->map(fn ($item) => ProductItemDto::fromModel($item));
+            $products = $subCategory->products()->paginate(config('app.pagination_count'))->through(fn ($item) => ProductItemDto::fromModel($item));
 
             $title = new TitleBuilder()->add($subCategory->name)->build();
 

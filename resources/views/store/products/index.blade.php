@@ -75,7 +75,9 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                     <div>
                         <h1 class="text-2xl font-bold">Search Results</h1>
-                        <p class="text-base-content/70">Showing {{$products->count()}} products</p>
+                        @if($products->count() > 0)
+                            <p class="text-base-content/70">Showing {{$products->count()}} products</p>
+                        @endif
                     </div>
                     <div class="flex gap-2">
                         <div class="form-control">
@@ -112,6 +114,12 @@
 
                 <!-- Product Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @if($products->count() === 0)
+                        <div class="col-span-3 mt-24 flex justify-center items-center flex-col gap-y-6">
+                            <i class="w-24 h-24 stroke-base-content" data-lucide="search-x"></i>
+                            <p>No Products found</p>
+                        </div>
+                    @endif
                     <!-- Product Card 1 -->
                     @foreach($products as $product)
                         <div class="card bg-base-100 shadow-md product-card border border-base-300">
