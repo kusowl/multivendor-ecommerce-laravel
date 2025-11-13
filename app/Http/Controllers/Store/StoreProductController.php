@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Store;
 
+use App\Dto\Product\ProductItemDto;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -34,7 +35,14 @@ class StoreProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('store.products.show', compact('product'));
+        $productDto = ProductItemDto::fromModel($product);
+        $category = $product->category;
+        $subCategory = $product->subCategory;
+
+        return view('store.products.show')
+            ->with('product', $productDto)
+            ->with('category', $category)
+            ->with('subCategory', $subCategory);
     }
 
     /**
