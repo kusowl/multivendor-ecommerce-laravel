@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Store;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SaveCartRequest;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Services\CartService;
 use App\Utils\TitleBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\ItemNotFoundException;
 
 class CartController extends Controller
 {
@@ -30,34 +27,6 @@ class CartController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SaveCartRequest $request)
-    {
-        $data = $request->validated();
-        try {
-            $product = Product::where('slug', $data['product_slug'])->firstOrFail();
-            DB::transaction(function () use ($product, $data) {
-                $userCart = Auth::user()->cart()->firstOrCreate();
-
-                $existingItem = $userCart->products()->where('product_id', $product->id)->first();
-                if (! $existingItem) {
-                    $userCart->products()->attach($product->id, [
-                        'quantity' => $data['product_quantity'],
-                    ]);
-                } else {
-                    $newQuantity = $existingItem->pivot->quantity + $data['product_quantity'];
-                    $userCart->products()->updateExistingPivot($product->id, [
-                        'quantity' => $newQuantity,
-                    ]);
-                }
-            });
-        } catch (ItemNotFoundException $e) {
-            return back()->with('error', 'Product Not found');
-        } catch (\Exception $e) {
-            return back()->with('error', 'Something went wrong!');
-        }
-
-        return back()->with('message', 'Added to cart');
-    }
 
     /**
      * Update the specified resource in storage.

@@ -23,7 +23,7 @@
                 <a href="{{route('cart.index')}}" tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <div class="indicator">
                         <i data-lucide="shopping-cart"></i>
-                        <span class="badge badge-sm indicator-item">8</span>
+                        <span id="cart-indicator" class="badge badge-sm indicator-item">0</span>
                     </div>
                 </a>
 
@@ -72,6 +72,5 @@
                 </ul>
             </div>
         </div>
-    </div>
     </div>
 </nav>

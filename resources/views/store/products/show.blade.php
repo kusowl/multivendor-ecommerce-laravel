@@ -41,73 +41,73 @@
             </div>
 
             <!-- Product Details -->
-            <div
-            ">
-            <h1 class="text-4xl font-bold mb-2">{{$product->name}}</h1>
-            <div class="flex items-center mb-4">
-                <div class="rating rating-md rating-half">
-                    <input type="radio" name="rating-10" class="rating-hidden"/>
-                    <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-1"/>
-                    <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-2"/>
-                    <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-1" checked/>
-                    <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-2"/>
-                    <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-1"/>
-                    <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-2"/>
-                    <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-1"/>
-                    <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-2"/>
-                    <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-1"/>
+            <div>
+                <h1 class="text-4xl font-bold mb-2">{{$product->name}}</h1>
+                <div class="flex items-center mb-4">
+                    <div class="rating rating-md rating-half">
+                        <input type="radio" name="rating-10" class="rating-hidden"/>
+                        <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-1"/>
+                        <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-2"/>
+                        <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-1" checked/>
+                        <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-2"/>
+                        <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-1"/>
+                        <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-2"/>
+                        <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-1"/>
+                        <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-2"/>
+                        <input type="radio" name="rating-10" class="bg-green-500 mask mask-star-2 mask-half-1"/>
+                    </div>
+                    <span class="ml-2 text-sm">4.5/5 • 128 Reviews</span>
                 </div>
-                <span class="ml-2 text-sm">4.5/5 • 128 Reviews</span>
-            </div>
 
-            <div class="mb-6">
-                <span class="text-3xl font-bold text-primary">${{$product->price}}</span>
-            </div>
+                <div class="mb-6">
+                    <span class="text-3xl font-bold text-primary">${{$product->price}}</span>
+                </div>
 
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold mb-2">Color Options</h3>
-                <div class="flex space-x-4">
-                    <div class="form-control">
-                        <label class="label cursor-pointer">
-                            <input type="radio" name="color" class="radio checked:bg-black" checked/>
-                            <span class="label-text ml-2">Matte Black</span>
-                        </label>
-                    </div>
-                    <div class="form-control">
-                        <label class="label cursor-pointer">
-                            <input type="radio" name="color" class="radio checked:bg-silver"/>
-                            <span class="label-text ml-2">Silver</span>
-                        </label>
-                    </div>
-                    <div class="form-control">
-                        <label class="label cursor-pointer">
-                            <input type="radio" name="color" class="radio checked:bg-blue-500"/>
-                            <span class="label-text ml-2">Navy Blue</span>
-                        </label>
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-2">Color Options</h3>
+                    <div class="flex space-x-4">
+                        <div class="form-control">
+                            <label class="label cursor-pointer">
+                                <input type="radio" name="color" class="radio checked:bg-black" checked/>
+                                <span class="label-text ml-2">Matte Black</span>
+                            </label>
+                        </div>
+                        <div class="form-control">
+                            <label class="label cursor-pointer">
+                                <input type="radio" name="color" class="radio checked:bg-silver"/>
+                                <span class="label-text ml-2">Silver</span>
+                            </label>
+                        </div>
+                        <div class="form-control">
+                            <label class="label cursor-pointer">
+                                <input type="radio" name="color" class="radio checked:bg-blue-500"/>
+                                <span class="label-text ml-2">Navy Blue</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <form action="{{route('cart.store')}}" method="post" id="productForm">
-                @csrf
-                <input type="hidden" name="product_slug" value="{{$product->slug}}">
-                <div class="flex flex-wrap gap-4 mb-6">
-                    <div class="join">
-                        <button class="btn join-item">-</button>
-                        <input name="product_quantity" class="input join-item w-16 rounded-lg text-center"
-                               type="number"
-                               value="1" min="1"/>
-                        <button class="btn join-item">+</button>
+                <form action="" method="post" id="productForm">
+                    @csrf
+                    <input type="hidden" name="product_slug" value="{{$product->slug}}">
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="join">
+                            <button class="btn join-item">-</button>
+                            <input name="product_quantity" class="input join-item w-16 rounded-lg text-center"
+                                   type="number"
+                                   value="1" min="1"/>
+                            <button class="btn join-item">+</button>
+                        </div>
+                        <x-button type="button" id='cart' class="btn-primary" icon="shopping-cart"
+                                  data-action="/api/cart/">Add to Cart
+                        </x-button>
+                        <x-button type="button" class="btn-secondary" icon="handshake"
+                                  data-action="{{route('checkout.entry.buynow')}}">
+                            Buy Now
+                        </x-button>
                     </div>
-                    <x-button type="submit" id='cart' class="btn-primary" icon="shopping-cart">Add to Cart
-                    </x-button>
-                    <x-button type="button" class="btn-secondary" icon="handshake"
-                              data-action="{{route('checkout.entry.buynow')}}">
-                        Buy Now
-                    </x-button>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
         </div>
 
         <!-- Product Details Tabs -->
@@ -283,16 +283,18 @@
                     const response = await axios.post(action, formData);
                     const data = response.data;
                     if (data.redirect) {
-                        // window.location.href = data.redirect.url;
+                        window.location.href = data.redirect.url;
                     }
+
+                    await fetchCart();
 
                     button.toggleLoad()
 
                 } catch (error) {
-                    if (error.response.status === 400) {
-                        // window.location.href = '/login'
+                    if (error.response.status === 401) {
+                        window.location.href = '/login'
                     } else if (error.response.status === 418) {
-                        // window.location.reload();
+                        window.location.reload();
                     } else {
                         console.error('Something gone wrong');
                     }

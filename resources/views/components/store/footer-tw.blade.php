@@ -6,5 +6,10 @@
         },
     });
 </script>
+<script defer>
+    window.onload = () => {
+        fetchCart();
+    }
+</script>
 </body>
 </html>
