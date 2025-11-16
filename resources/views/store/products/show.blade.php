@@ -289,21 +289,20 @@
                     await fetchCart();
 
                     button.toggleLoad()
-
+                    toast.show('added to Cart !', 'success');
                 } catch (error) {
                     if (error.response.status === 401) {
                         window.location.href = '/login'
                     } else if (error.response.status === 418) {
                         window.location.reload();
                     } else {
+                        toast.show('Something gone wrong!', 'error');
                         console.error('Something gone wrong');
                     }
-
                     button.toggleLoad()
-
-
                 }
             })
         })
+
     </script>
 </x-layouts.store-tw>
