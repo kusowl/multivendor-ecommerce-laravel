@@ -3,6 +3,7 @@
 <x-store.navbar/>
 <x-store.topbar/>
 <div class="mx-auto w-10/12 px-4 py-8">
+    <x-toast/>
     {{$slot}}
 </div>
 <x-store.footer-tw/>
