@@ -86,27 +86,23 @@
                         </div>
                     </div>
                 </div>
-
-                <form action="" method="post" id="productForm">
-                    @csrf
-                    <input type="hidden" name="product_slug" value="{{$product->slug}}">
-                    <div class="flex flex-wrap gap-4 mb-6">
-                        <div class="join">
-                            <button class="btn join-item">-</button>
-                            <input name="product_quantity" class="input join-item w-16 rounded-lg text-center"
-                                   type="number"
-                                   value="1" min="1"/>
-                            <button class="btn join-item">+</button>
-                        </div>
-                        <x-button type="button" id='cart' class="btn-primary" icon="shopping-cart"
-                                  data-action="/api/cart/">Add to Cart
-                        </x-button>
-                        <x-button type="button" class="btn-secondary" icon="handshake"
-                                  data-action="{{route('checkout.entry.buynow')}}">
-                            Buy Now
-                        </x-button>
+                <div class="flex flex-wrap gap-4 mb-6">
+                    <div class="join">
+                        <button class="btn join-item" onclick="decreaseQty(this)">-</button>
+                        <input name="product_quantity" class="input join-item w-16 rounded-lg text-center"
+                               type="number"
+                               value="1" min="1"/>
+                        <button class="btn join-item" onclick="increaseQty(this)">+</button>
                     </div>
-                </form>
+                    <x-button type="button" class="btn-primary" icon="shopping-cart"
+                              onclick="addToCart('{{$product->slug}}',getQty(this), this)">
+                        Add to Cart
+                    </x-button>
+                    <x-button type="button" class="btn-secondary" icon="handshake"
+                              onclick="buyNow('{{$product->slug}}', getQty(this), this)">
+                        Buy Now
+                    </x-button>
+                </div>
             </div>
         </div>
 
@@ -268,41 +264,4 @@
             </div>
         </div>
     </main>
-
-    <script type="text/javascript" defer>
-        document.querySelectorAll('#productForm button').forEach(button => {
-            button.addEventListener('click', async (event) => {
-                console.log(event.currentTarget);
-                const button = new Button(event.currentTarget);
-                button.toggleLoad()
-                const form = document.getElementById('productForm');
-                const formData = new FormData(form);
-                const action = event.currentTarget.getAttribute('data-action');
-                try {
-
-                    const response = await axios.post(action, formData);
-                    const data = response.data;
-                    if (data.redirect) {
-                        window.location.href = data.redirect.url;
-                    }
-
-                    await fetchCart();
-
-                    button.toggleLoad()
-                    toast.show('added to Cart !', 'success');
-                } catch (error) {
-                    if (error.response.status === 401) {
-                        window.location.href = '/login'
-                    } else if (error.response.status === 418) {
-                        window.location.reload();
-                    } else {
-                        toast.show('Something gone wrong!', 'error');
-                        console.error('Something gone wrong');
-                    }
-                    button.toggleLoad()
-                }
-            })
-        })
-
-    </script>
 </x-layouts.store-tw>

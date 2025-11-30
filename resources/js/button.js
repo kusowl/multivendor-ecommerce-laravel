@@ -1,4 +1,4 @@
-class Button {
+export class Button {
     constructor(buttonElement) {
         // Add null checks and safe property access
         if (!buttonElement) {

@@ -10,3 +10,81 @@ export async function fetchCart() {
         console.log(e);
     }
 }
+
+export async function addToCart(productSlug, quantity, buttonElement) {
+    const button = new Button(buttonElement);
+    button.toggleLoad()
+
+    const cartData = {
+        'product_quantity': quantity,
+        'product_slug': productSlug
+    };
+
+    try {
+        const response = await axios.post('/api/cart', cartData);
+        const data = response.data;
+        toast.show('added to Cart !', 'success');
+        button.toggleLoad()
+
+        await fetchCart()
+    } catch (error) {
+        if (error.response.status === 401) {
+            window.location.href = '/login'
+        } else if (error.response.status === 418) {
+            window.location.reload();
+        } else {
+            toast.show('Something gone wrong!', 'error');
+            console.error('Something gone wrong');
+        }
+        button.toggleLoad()
+        await fetchCart()
+    }
+}
+
+export async function buyNow(productSlug, quantity, buttonElement) {
+    const button = new Button(buttonElement);
+    button.toggleLoad()
+
+    const cartData = {
+        'product_quantity': quantity,
+        'product_slug': productSlug
+    };
+
+    try {
+        const response = await axios.post('/checkout/entry/buynow', cartData);
+        const data = response.data;
+        toast.show('added to Cart !', 'success');
+        button.toggleLoad()
+
+    } catch (error) {
+        if (error.response.status === 401) {
+            window.location.href = '/login'
+        } else if (error.response.status === 418) {
+            window.location.reload();
+        } else {
+            toast.show('Something gone wrong!', 'error');
+            console.error('Something gone wrong');
+        }
+        button.toggleLoad()
+
+    }
+}
+
+export function getQty(btn) {
+    return btn.closest('.flex').querySelector('input[name="product_quantity"]').value;
+}
+
+export function increaseQty(btn) {
+    const input = btn.parentElement.querySelector('input[name="product_quantity"]');
+    input.value = parseInt(input.value) + 1;
+}
+
+export function decreaseQty(btn) {
+    const input = btn.parentElement.querySelector('input[name="product_quantity"]');
+    const current = parseInt(input.value);
+
+    if (current > 1) {
+        input.value = current - 1;
+    }
+}
+

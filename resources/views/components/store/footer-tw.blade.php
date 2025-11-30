@@ -10,6 +10,8 @@
     window.onload = () => {
         fetchCart();
     }
+
 </script>
+<x-store.footer/>
 </body>
 </html>

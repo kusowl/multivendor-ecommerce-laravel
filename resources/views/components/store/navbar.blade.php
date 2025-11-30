@@ -5,8 +5,7 @@
             <form action="" method="get" class="flex flex-1">
                 <label class="input flex-1 mr-12">
                     <i data-lucide="search"></i>
-                    <input type="text" placeholder="Search for Products, Categories and more"
-                           class="input input-bordered "/>
+                    <input type="search" required placeholder="Search for products, categories and more"/>
                 </label>
             </form>
         </div>
@@ -23,7 +22,8 @@
                 <a href="{{route('cart.index')}}" tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <div class="indicator">
                         <i data-lucide="shopping-cart"></i>
-                        <span id="cart-indicator" class="badge badge-sm indicator-item">0</span>
+                        <span id="cart-indicator"
+                              class="badge badge-sm rounded-full p-1 indicator-item">0</span>
                     </div>
                 </a>
 
@@ -42,6 +42,7 @@
                     <ul
                         tabindex="-1"
                         class="menu menu-lg md:menu-md dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <li><a href="{{route('orders.index')}}">Orders</a></li>
                         <li>
                             <a class="justify-between">
                                 Profile

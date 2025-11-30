@@ -1,57 +1,111 @@
-<x-layouts.store>
-    <x-store.page-header page="Payment"/>
-    <div class="page-wrapper">
-        <div class="checkout shopping">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="block billing-details">
-                            <h4 class="widget-title">Billing Details</h4>
-                            <input type="checkbox" id="sameBillingAddress">
-                            <label for="sameBillingAddress">Same as shipping address</label>
-                            <form class="checkout-form">
-                                <div class="form-group">
-                                    <label for="full_name">Full Name</label>
-                                    <input type="text" class="form-control" id="full_name" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="user_address">Address</label>
-                                    <input type="text" class="form-control" id="user_address" placeholder="">
-                                </div>
-                                <div class="checkout-country-code clearfix">
-                                    <div class="form-group">
-                                        <label for="user_post_code">Zip Code</label>
-                                        <input type="text" class="form-control" id="user_post_code" name="zipcode"
-                                               value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="user_city">City</label>
-                                        <input type="text" class="form-control" id="user_city" name="city" value="">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="user_country">Country</label>
-                                    <input type="text" class="form-control" id="user_country" placeholder="">
-                                </div>
-                            </form>
+<x-layouts.store-tw>
+    <!-- Main Checkout Section -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Checkout Steps & Forms -->
+            <div class="flex-1">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold mb-2">Payment</h1>
+                </div>
 
+                <!-- Billing Address Section -->
+                <div class="ui-card mb-8">
+                    <div class="card-body">
+                        <h2 class="card-title text-xl mb-4">
+                            <i data-lucide="map-pin-pen"></i>
+                            Billing Address
+                        </h2>
+
+                        <div class="form-control mt-4">
+                            <label class="label cursor-pointer justify-start">
+                                <input type="checkbox" class="checkbox checkbox-primary mr-2"/>
+                                <span class="label-text">Same address as delivery</span>
+                            </label>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="block billing-details">
-                            <h4 class="widget-title">Pay</h4>
-                            <button type="submit" class="btn btn-main" id="razorpay-btn"
-                                    data-route="{{route('checkout.payment.razorpay', $cart)}}"
-                            >
-                                Pay via Razorpay
-                            </button>
+
+                        <div class="divider">OR</div>
+
+                        <!-- New Address Form -->
+                        <div class="mb-4">
+                            <h3 class="font-semibold mb-3">Fill billing address</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Full Name *</span>
+                                    </label>
+                                    <input type="text" placeholder="Enter your full name" class="input input-bordered"/>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Phone Number *</span>
+                                    </label>
+                                    <input type="tel" placeholder="Enter your phone number"
+                                           class="input input-bordered"/>
+                                </div>
+                                <div class="form-control md:col-span-2">
+                                    <label class="label">
+                                        <span class="label-text">Address Line 1 *</span>
+                                    </label>
+                                    <input type="text" placeholder="Street address, P.O. box, company name"
+                                           class="input input-bordered"/>
+                                </div>
+                                <div class="form-control md:col-span-2">
+                                    <label class="label">
+                                        <span class="label-text">Address Line 2</span>
+                                    </label>
+                                    <input type="text" placeholder="Apartment, suite, unit, building, floor, etc."
+                                           class="input input-bordered"/>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">City *</span>
+                                    </label>
+                                    <input type="text" placeholder="Enter your city" class="input input-bordered"/>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">State/Province *</span>
+                                    </label>
+                                    <input type="text" placeholder="Enter your state" class="input input-bordered"/>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">ZIP/Postal Code *</span>
+                                    </label>
+                                    <input type="text" placeholder="Enter ZIP code" class="input input-bordered"/>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Country *</span>
+                                    </label>
+                                    <select class="select select-bordered">
+                                        <option disabled selected>Select your country</option>
+                                        <option>United States</option>
+                                        <option>Canada</option>
+                                        <option>United Kingdom</option>
+                                        <option>Australia</option>
+                                        <option>India</option>
+                                    </select>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
                 </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between mt-8">
+                    <x-back/>
+                    <x-button type="submit" class="btn btn-primary" id="razorpay-btn"
+                              data-route="{{route('checkout.payment.razorpay', $cart)}}"
+                    >
+                        <i data-lucide="badge-indian-rupee"></i>
+                        Pay via Razorpay
+                    </x-button>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     @vite('resources/js/razorpay.js')
-</x-layouts.store>
+</x-layouts.store-tw>

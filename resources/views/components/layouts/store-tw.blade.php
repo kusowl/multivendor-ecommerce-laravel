@@ -7,4 +7,3 @@
     {{$slot}}
 </div>
 <x-store.footer-tw/>
-{{-- <x-store.footer/> --}}

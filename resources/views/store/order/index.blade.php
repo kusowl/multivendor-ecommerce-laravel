@@ -33,7 +33,7 @@
                 @csrf
                 <div class="join">
                     <div>
-                        <label class="input join-item">
+                        <label class="input join-item outline-0">
                             <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
                                    stroke="currentColor">

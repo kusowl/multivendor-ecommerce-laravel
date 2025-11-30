@@ -28,7 +28,7 @@ class CheckoutController extends Controller
         $products = $cart->products;
         $prices = $cart->getPrices();
 
-        return view('store.checkout.checkout', compact('cart', 'products', 'prices'));
+        return view('store.checkout.index', compact('cart', 'products', 'prices'));
     }
 
     /**

@@ -1,16 +1,23 @@
 import axios from 'axios';
+import {Button} from './button.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const payBtn = document.getElementById('razorpay-btn');
+    const btn = new Button(payBtn);
+
     payBtn?.addEventListener('click', async () => {
+        btn.toggleLoad();
         const route = payBtn.dataset.route;
         const response = await axios.post(route);
         if (response.status === 200) {
             console.table(response.data.razorPayOrder)
             initializeRazorpay(response.data.razorPayOrder)
+            btn.toggleLoad();
         } else if (response.status === 400) {
-            alert(response.data.error);
-            console.error(response.data.message)
+            toast.show(response.data.error, 'error')
+            btn.toggleLoad();
+        } else {
+            toast.show('Something gone wrong!', 'error');
         }
     })
 })
@@ -25,7 +32,6 @@ async function initializeRazorpay(orderData) {
         description: "Order Payment",
         // image: "https://your-website.com/logo.png",
         handler: function (response) {
-            console.log(response)
             verifyPayment(response, orderData.receipt);
         },
         theme: {
@@ -34,7 +40,7 @@ async function initializeRazorpay(orderData) {
         modal: {
             ondismiss: function () {
                 // Payment cancelled
-                alert('Payment cancelled');
+                toast.show('Payment cancelled', 'warning');
             }
         }
     };
@@ -54,5 +60,7 @@ async function verifyPayment(paymentResponse, receipt) {
     const response = await axios.post('/checkout/payment/razorpay/verify', options);
     if (response.status < 500) {
         window.location.href = '/checkout/payment/confirmation';
+    } else {
+        toast.show('Payment verification failed !', 'error');
     }
 }

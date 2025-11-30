@@ -1,402 +1,278 @@
-<x-layouts.store>
-    <div class="hero-slider">
-        <div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/slider-1.jpg);">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 text-center">
-                        <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
-                        <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature
-                            <br>
-                            is hidden in details.</h1>
-                        <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn"
-                           href="shop.html">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/slider-3.jpg);">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 text-left">
-                        <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
-                        <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature
-                            <br>
-                            is hidden in details.</h1>
-                        <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn"
-                           href="shop.html">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/slider-2.jpg);">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 text-right">
-                        <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
-                        <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature
-                            <br>
-                            is hidden in details.</h1>
-                        <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn"
-                           href="shop.html">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<x-layouts.store-tw>
+    <style>
+        .parallax-text {
+            transform: translateZ(0);
+            will-change: transform;
+        }
 
-    <section class="product-category section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title text-center">
-                        <h2>Product Category</h2>
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-card {
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+    </style>
+
+    <!-- Hero Section with Parallax -->
+    <section class="hero-section">
+        <div class="hero-content text-center text-neutral-content">
+            <div class="max-w-md">
+                <h1 class="parallax-text mb-5 text-5xl font-bold">Summer Collection 2023</h1>
+                <p class="parallax-text mb-5 text-xl">Discover the latest trends with up to 50% off on selected
+                    items.</p>
+                <button class="btn btn-primary">Shop Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-base-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Why Shop With Us</h2>
+                <p class="text-lg max-w-2xl mx-auto">We provide the best shopping experience with premium quality
+                    products and exceptional customer service.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="feature-icon bg-primary/20 text-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold my-3">Free Shipping</h3>
+                    <p>Free shipping on all orders over $50</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon bg-secondary/20 text-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold my-3">Secure Payment</h3>
+                    <p>Your payment information is safe with us</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon bg-accent/20 text-accent">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold my-3">Easy Returns</h3>
+                    <p>30-day return policy for all items</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon bg-info/20 text-info">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold my-3">24/7 Support</h3>
+                    <p>Round-the-clock customer support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Categories Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Top Categories</h2>
+                <p class="text-lg max-w-2xl mx-auto">Browse our most popular categories</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="category-card card bg-base-100 shadow-xl">
+                    <figure class="px-4 pt-4">
+                        <img
+                            src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80"
+                            alt="Electronics" class="rounded-xl h-40 w-full object-cover"/>
+                    </figure>
+                    <div class="card-body items-center text-center py-6">
+                        <h2 class="card-title">Electronics</h2>
+                        <p>Latest gadgets & tech</p>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="category-box">
-                        <a href="#!">
-                            <img src="images/shop/category/category-1.jpg" alt=""/>
-                            <div class="content">
-                                <h3>Clothes Sales</h3>
-                                <p>Shop New Season Clothing</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="category-box">
-                        <a href="#!">
-                            <img src="images/shop/category/category-2.jpg" alt=""/>
-                            <div class="content">
-                                <h3>Smart Casuals</h3>
-                                <p>Get Wide Range Selection</p>
-                            </div>
-                        </a>
+                <div class="category-card card bg-base-100 shadow-xl">
+                    <figure class="px-4 pt-4">
+                        <img
+                            src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+                            alt="Fashion" class="rounded-xl h-40 w-full object-cover"/>
+                    </figure>
+                    <div class="card-body items-center text-center py-6">
+                        <h2 class="card-title">Fashion</h2>
+                        <p>Trendy clothing & accessories</p>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="category-box category-box-2">
-                        <a href="#!">
-                            <img src="images/shop/category/category-3.jpg" alt=""/>
-                            <div class="content">
-                                <h3>Jewellery</h3>
-                                <p>Special Design Comes First</p>
-                            </div>
-                        </a>
+                <div class="category-card card bg-base-100 shadow-xl">
+                    <figure class="px-4 pt-4">
+                        <img
+                            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80"
+                            alt="Home & Garden" class="rounded-xl h-40 w-full object-cover"/>
+                    </figure>
+                    <div class="card-body items-center text-center py-6">
+                        <h2 class="card-title">Home & Garden</h2>
+                        <p>Furniture & decor</p>
+                    </div>
+                </div>
+                <div class="category-card card bg-base-100 shadow-xl">
+                    <figure class="px-4 pt-4">
+                        <img
+                            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                            alt="Sports" class="rounded-xl h-40 w-full object-cover"/>
+                    </figure>
+                    <div class="card-body items-center text-center py-6">
+                        <h2 class="card-title">Sports</h2>
+                        <p>Equipment & apparel</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="products section bg-gray">
-        <div class="container">
-            <div class="row">
-                <div class="title text-center">
-                    <h2>Trendy Products</h2>
+    <!-- Top Products Section -->
+    <section class="py-16 bg-base-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Top Products</h2>
+                <p class="text-lg max-w-2xl mx-auto">Check out our best-selling items</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card card bg-base-100 shadow-xl">
+                    <figure class="px-4 pt-4">
+                        <img
+                            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                            alt="Wireless Headphones" class="rounded-xl h-48 w-full object-cover"/>
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title">Wireless Headphones</h2>
+                        <p>Premium sound quality with noise cancellation</p>
+                        <div class="card-actions justify-between items-center mt-4">
+                            <span class="text-xl font-bold">$129.99</span>
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card card bg-base-100 shadow-xl">
+                    <figure class="px-4 pt-4">
+                        <img
+                            src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1999&q=80"
+                            alt="Smart Watch" class="rounded-xl h-48 w-full object-cover"/>
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title">Smart Watch</h2>
+                        <p>Track your fitness and stay connected</p>
+                        <div class="card-actions justify-between items-center mt-4">
+                            <span class="text-xl font-bold">$199.99</span>
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card card bg-base-100 shadow-xl">
+                    <figure class="px-4 pt-4">
+                        <img
+                            src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80"
+                            alt="Backpack" class="rounded-xl h-48 w-full object-cover"/>
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title">Travel Backpack</h2>
+                        <p>Durable and spacious for all your adventures</p>
+                        <div class="card-actions justify-between items-center mt-4">
+                            <span class="text-xl font-bold">$79.99</span>
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card card bg-base-100 shadow-xl">
+                    <figure class="px-4 pt-4">
+                        <img
+                            src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80"
+                            alt="Sneakers" class="rounded-xl h-48 w-full object-cover"/>
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title">Running Sneakers</h2>
+                        <p>Comfort and style for your active lifestyle</p>
+                        <div class="card-actions justify-between items-center mt-4">
+                            <span class="text-xl font-bold">$89.99</span>
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <div class="product-thumb">
-                            <span class="bage">Sale</span>
-                            <img class="img-responsive" src="images/shop/products/product-1.jpg" alt="product-img"/>
-                            <div class="preview-meta">
-                                <ul>
-                                    <li>
-									<span data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-                                    </li>
-                                    <li>
-                                        <a href="#!"><i class="tf-ion-ios-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="product-single.html">Reef Boardsport</a></h4>
-                            <p class="price">$200</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <div class="product-thumb">
-                            <img class="img-responsive" src="images/shop/products/product-2.jpg" alt="product-img"/>
-                            <div class="preview-meta">
-                                <ul>
-                                    <li>
-									<span data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="product-single.html">Rainbow Shoes</a></h4>
-                            <p class="price">$200</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <div class="product-thumb">
-                            <img class="img-responsive" src="images/shop/products/product-3.jpg" alt="product-img"/>
-                            <div class="preview-meta">
-                                <ul>
-                                    <li>
-									<span data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="product-single.html">Strayhorn SP</a></h4>
-                            <p class="price">$230</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <div class="product-thumb">
-                            <img class="img-responsive" src="images/shop/products/product-4.jpg" alt="product-img"/>
-                            <div class="preview-meta">
-                                <ul>
-                                    <li>
-									<span data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="product-single.html">Bradley Mid</a></h4>
-                            <p class="price">$200</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <div class="product-thumb">
-                            <img class="img-responsive" src="images/shop/products/product-5.jpg" alt="product-img"/>
-                            <div class="preview-meta">
-                                <ul>
-                                    <li>
-									<span data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="product-single.html">Rainbow Shoes</a></h4>
-                            <p class="price">$200</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <div class="product-thumb">
-                            <img class="img-responsive" src="images/shop/products/product-6.jpg" alt="product-img"/>
-                            <div class="preview-meta">
-                                <ul>
-                                    <li>
-									<span data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="product-single.html">Rainbow Shoes</a></h4>
-                            <p class="price">$200</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <div class="product-thumb">
-                            <span class="bage">Sale</span>
-                            <img class="img-responsive" src="images/shop/products/product-7.jpg" alt="product-img"/>
-                            <div class="preview-meta">
-                                <ul>
-                                    <li>
-									<span data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="product-single.html">Rainbow Shoes</a></h4>
-                            <p class="price">$200</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <div class="product-thumb">
-                            <img class="img-responsive" src="images/shop/products/product-8.jpg" alt="product-img"/>
-                            <div class="preview-meta">
-                                <ul>
-                                    <li>
-									<span data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="product-single.html">Rainbow Shoes</a></h4>
-                            <p class="price">$200</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <div class="product-thumb">
-                            <img class="img-responsive" src="images/shop/products/product-9.jpg" alt="product-img"/>
-                            <div class="preview-meta">
-                                <ul>
-                                    <li>
-									<span data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="product-single.html">Rainbow Shoes</a></h4>
-                            <p class="price">$200</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal -->
-                <div class="modal product-modal fade" id="product-modal">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="tf-ion-close"></i>
-                    </button>
-                    <div class="modal-dialog " role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-8 col-sm-6 col-xs-12">
-                                        <div class="modal-image">
-                                            <img class="img-responsive" src="images/shop/products/modal-product.jpg"
-                                                 alt="product-img"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="product-short-details">
-                                            <h2 class="product-title">GM Pendant, Basalt Grey</h2>
-                                            <p class="product-price">$200</p>
-                                            <p class="product-short-description">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto
-                                                nihil
-                                                cum. Illo laborum numquam rem aut officia dicta cumque.
-                                            </p>
-                                            <a href="cart.html" class="btn btn-main">Add To Cart</a>
-                                            <a href="product-single.html" class="btn btn-transparent">View Product
-                                                Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- /.modal -->
-
+            <div class="text-center mt-12">
+                <button class="btn btn-outline btn-primary">View All Products</button>
             </div>
         </div>
     </section>
 
+    <!-- Newsletter Section -->
+    <section class="py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+            <p class="text-lg mb-8">Get the latest updates on new products and upcoming sales</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <input type="text" placeholder="Your email address" class="input input-bordered w-full max-w-xs"/>
+                <button class="btn btn-primary">Subscribe</button>
+            </div>
+        </div>
+    </section>
 
-    <!--
-    Start Call To Action
-    ==================================== -->
-    <section class="call-to-action bg-gray section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="title">
-                        <h2>SUBSCRIBE TO NEWSLETTER</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, <br> facilis numquam
-                            impedit ut
-                            sequi. Minus facilis vitae excepturi sit laboriosam.</p>
-                    </div>
-                    <div class="col-lg-6 col-md-offset-3">
-                        <div class="input-group subscription-form">
-                            <input type="text" class="form-control" placeholder="Enter Your Email Address">
-                            <span class="input-group-btn">
-				        <button class="btn btn-main" type="button">Subscribe Now!</button>
-				      </span>
-                        </div><!-- /input-group -->
-                    </div><!-- /.col-lg-6 -->
+    <script>
+        // Simple parallax effect for hero text
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const parallaxTexts = document.querySelectorAll('.parallax-text');
 
-                </div>
-            </div>        <!-- End row -->
-        </div>    <!-- End container -->
-    </section>   <!-- End section -->
-</x-layouts.store>
+            parallaxTexts.forEach(text => {
+                const speed = 0.5;
+                text.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</x-layouts.store-tw>
+

@@ -122,13 +122,13 @@
                     @endif
                     <!-- Product Card 1 -->
                     @foreach($products as $product)
-                        <div class="card bg-base-100 shadow-md product-card border border-base-300">
-                            <figure class="px-4 pt-4 h-48 bg-base-100">
+                        <div class="ui-card product-card">
+                            <figure class="p-2 h-48">
                                 <img
                                     src="{{\App\Utils\File::getImage($product->images()->first())}}"
                                     alt="" class="rounded-xl h-full"/>
                             </figure>
-                            <div class="card-body">
+                            <div class="p-2 card-body">
                                 <div class="flex justify-between items-start">
                                     <div>
                                         <a href="{{route('store.products.show', $product->slug)}}"
@@ -137,12 +137,13 @@
                                         <p class="text-base-content/70">Electronics</p>
                                     </div>
                                 </div>
-                                <div class="card-actions justify-between items-center mt-4">
+                                <div class="card-actions justify-between items-center mt-auto">
                                     <div class="text-xl font-bold">${{$product->price}}</div>
+                                    <x-button class="btn btn-primary btn-soft"
+                                              onclick="addToCart('{{$product->slug}}',this)">Add to Cart
+                                    </x-button>
                                 </div>
-                                <div class="card-actions mt-4">
-                                    <button class="btn btn-primary btn-soft btn-block">Add to Cart</button>
-                                </div>
+
                             </div>
                         </div>
                     @endforeach

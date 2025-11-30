@@ -17,6 +17,7 @@ class StoreOrderController extends Controller
     {
         $paginatedOrders = Auth::user()
             ->orders()
+            ->latest()
             ->with([
                 'products' => fn (BelongsToMany $query) => $query->withPivot('quantity'),
             ])
