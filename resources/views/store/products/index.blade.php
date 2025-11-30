@@ -140,7 +140,7 @@
                                 <div class="card-actions justify-between items-center mt-auto">
                                     <div class="text-xl font-bold">${{$product->price}}</div>
                                     <x-button class="btn btn-primary btn-soft"
-                                              onclick="addToCart('{{$product->slug}}',this)">Add to Cart
+                                              onclick="addToCart('{{$product->slug}}',1, this)">Add to Cart
                                     </x-button>
                                 </div>
 
