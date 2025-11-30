@@ -1,60 +1,51 @@
 <x-layouts.auth :title="$title">
-    <section class="signin-page account">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="block text-center">
-                        <a class="logo" href="index.html">
-                            <img src="images/logo.png" alt="">
-                        </a>
-                        <h2 class="text-center">Create Your Account</h2>
-                        <form class="text-left clearfix" action="{{route('register')}}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="name" placeholder="Name"
-                                       value="{{old('name')}}">
-                                <x-shared.error field="name"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="email" placeholder="Email"
-                                       value="{{old('email')}}">
-                                <x-shared.error field="email"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" name="password" placeholder="Password">
-                                <x-shared.error field="password"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="password_confirmation"
-                                       placeholder="Confirm password">
-                            </div>
-                            <div class="form-group">
-                                <h4>Who are you?</h4>
-                                <label class="radio-inline">
-                                    <input type="radio" name="role" id="inlineRadio1" value="customer">
-                                    <p>Customer</p>
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="role" id="inlineRadio2" value="vendor">
-                                    <p>Vendor</p>
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="role" id="inlineRadio3" value="partner">
-                                    <p>Delivery Partner</p>
-                                </label>
-                                <div class="">
-                                    <x-shared.error field="role"/>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-main text-center">Sign Up</button>
-                            </div>
-                        </form>
-                        <p class="mt-20">Already hava an account ?<a href="{{route('login')}}"> Login</a></p>
-                        <p><a href="forget-password.html"> Forgot your password?</a></p>
+    <section class="m-auto mb-10">
+        <h2 class="text-center">Sign up for {{config('app.name')}}</h2>
+        <form class="text-left clearfix" action="{{route('register')}}" method="post">
+            @csrf
+            <fieldset class="fieldset ui-card mt-8 w-lg px-6 py-4">
+                <legend class="fieldset-legend">Register</legend>
+                <div class="grid grid-cols-2 gap-x-4">
+                    <div>
+                        <label class="label">Name</label>
+                        <input type="text" name="name" class="input bg-base-300/30" placeholder="Name"
+                               value="{{old('name')}}"/>
+                        <x-shared.error field="name"/>
+                    </div>
+                    <div>
+                        <label class="label">Email</label>
+                        <input type="email" name="email" class="input bg-base-300/30" placeholder="Email"
+                               value="{{old('email')}}"/>
+                        <x-shared.error field="email"/>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="grid grid-cols-2 gap-x-4">
+                    <div class="">
+                        <label class="label">Password</label>
+                        <input type="password" name="password" class="input bg-base-300/30" placeholder="Password"
+                        />
+                        <x-shared.error field="password"/>
+                    </div>
+                    <div>
+                        <label class="label">Confirm password</label>
+                        <input type="text" name="password_confirmation" class="input bg-base-300/30"
+                               placeholder="Confirm Password"/>
+                    </div>
+                </div>
+                <label class="label">Account type</label>
+                <select name="role" class="select text-gray-500/80 bg-[#F6F8FB] w-full">
+                    <option disabled {{old('role') == '' ? 'selected' : ''}}>Choose a type</option>
+                    <option value="customer" {{old('role') === 'customer' ? 'selected' : ''}}>Customer</option>
+                    <option value="vendor" {{old('role') === 'vendor' ? 'selected' : ''}}>Vendor</option>
+                </select>
+                <button class="btn btn-neutral btn-soft mt-4">Register</button>
+                <p class="text-xs text-gray-500 mx-auto mt-2">
+                    Already have an account ?
+                    <a class="link link-primary ml-2" href="{{route('login')}}">
+                        Login
+                    </a>
+                </p>
+            </fieldset>
+        </form>
     </section>
 </x-layouts.auth>
