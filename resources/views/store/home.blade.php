@@ -1,23 +1,5 @@
 <x-layouts.store-tw>
     <style>
-        .parallax-text {
-            transform: translateZ(0);
-            will-change: transform;
-        }
-
-        .hero-section {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
         .category-card {
             transition: transform 0.3s ease;
         }
@@ -46,18 +28,44 @@
         }
     </style>
 
-    <!-- Hero Section with Parallax -->
-    <section class="hero-section">
-        <div class="hero-content text-center text-neutral-content">
-            <div class="max-w-md">
-                <h1 class="parallax-text mb-5 text-5xl font-bold">Summer Collection 2023</h1>
-                <p class="parallax-text mb-5 text-xl">Discover the latest trends with up to 50% off on selected
-                    items.</p>
-                <button class="btn btn-primary">Shop Now</button>
+    <div class="carousel w-full rounded-xl">
+        <div id="slide1" class="carousel-item relative w-full">
+            <img
+                src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
+                class="w-full "/>
+            <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                <a href="#slide4" class="btn btn-circle">❮</a>
+                <a href="#slide2" class="btn btn-circle">❯</a>
             </div>
         </div>
-    </section>
-
+        <div id="slide2" class="carousel-item relative w-full">
+            <img
+                src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
+                class="w-full "/>
+            <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                <a href="#slide1" class="btn btn-circle">❮</a>
+                <a href="#slide3" class="btn btn-circle">❯</a>
+            </div>
+        </div>
+        <div id="slide3" class="carousel-item relative w-full">
+            <img
+                src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
+                class="w-full "/>
+            <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                <a href="#slide2" class="btn btn-circle">❮</a>
+                <a href="#slide4" class="btn btn-circle">❯</a>
+            </div>
+        </div>
+        <div id="slide4" class="carousel-item relative w-full">
+            <img
+                src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
+                class="w-full "/>
+            <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                <a href="#slide3" class="btn btn-circle">❮</a>
+                <a href="#slide1" class="btn btn-circle">❯</a>
+            </div>
+        </div>
+    </div>
     <!-- Features Section -->
     <section class="py-16 bg-base-200">
         <div class="max-w-7xl mx-auto px-4">

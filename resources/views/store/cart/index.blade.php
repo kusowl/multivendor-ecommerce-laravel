@@ -134,7 +134,7 @@
                     <i class="fas fa-shopping-cart text-6xl text-gray-300 mb-6"></i>
                     <h2 class="text-3xl font-bold mb-4">Your cart is empty</h2>
                     <p class="text-gray-600 mb-8">Looks like you haven't added any items to your cart yet.</p>
-                    <a href="/" class="btn btn-primary btn-lg">Start Shopping</a>
+                    <a href="/" class="btn btn-primary btn-lg btn-soft">Start Shopping</a>
                 </div>
             </div>
     </main>
@@ -156,28 +156,5 @@
             });
         });
 
-        // Remove item functionality
-        document.querySelectorAll('.btn-ghost.text-error').forEach(button => {
-            button.addEventListener('click', function () {
-                const item = this.closest('.cart-item');
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(100px)';
-                setTimeout(() => {
-                    item.remove();
-                    // Update cart count and totals
-                    updateCartSummary();
-                }, 300);
-            });
-        });
-
-        // Function to update cart summary (simplified for demo)
-        function updateCartSummary() {
-            // In a real app, this would recalculate totals based on remaining items
-            const itemCount = document.querySelectorAll('.cart-item').length;
-            if (itemCount === 0) {
-                document.querySelector('main').style.display = 'none';
-                document.querySelector('.empty-cart').classList.remove('hidden');
-            }
-        }
     </script>
 </x-layouts.store-tw>
