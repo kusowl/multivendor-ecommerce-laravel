@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Filament\Resources\Products\Tables;
+
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+
+class ProductsTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('name')
+                    ->searchable(),
+                TextColumn::make('slug')
+                    ->searchable(),
+                ImageColumn::make('image'),
+                TextColumn::make('price')
+                    ->money()
+                    ->sortable(),
+                IconColumn::make('is_active')
+                    ->boolean(),
+                TextColumn::make('stock')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('category.name')
+                    ->searchable(),
+                TextColumn::make('subCategory.name')
+                    ->searchable(),
+                TextColumn::make('vendor.name')
+                    ->searchable(),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('order_receipt')
+                    ->searchable(),
+                TextColumn::make('payment_receipt')
+                    ->searchable(),
+            ])
+            ->filters([
+                //
+            ])
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}
