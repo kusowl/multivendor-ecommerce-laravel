@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Orders\Schemas;
 
+use App\Enums\Payment\PaymentMethod;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -12,11 +14,12 @@ class OrderForm
     {
         return $schema
             ->components([
-                TextInput::make('user_id')
-                    ->fi
+                Select::make('user_id')
+                    ->relationship('user', 'name')
                     ->disabled(),
                 TextInput::make('order_no')
-                    ->required(),
+                    ->required()
+                    ->disabled(),
                 TextInput::make('total_amount')
                     ->required()
                     ->numeric(),
@@ -37,7 +40,8 @@ class OrderForm
                 TextInput::make('payment_status')
                     ->required()
                     ->default('unpaid'),
-                TextInput::make('payment_method')
+                Select::make('payment_method')
+                    ->options(PaymentMethod::toArray())
                     ->required(),
                 DatePicker::make('confirmed_at'),
                 DatePicker::make('shipped_at'),
